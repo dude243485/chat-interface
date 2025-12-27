@@ -1,0 +1,633 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+
+body {
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+* {
+  font-family: inherit;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 20px;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e9ecef;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+}
+
+.back-button:hover {
+  background-color: #e9ecef;
+}
+
+.back-icon {
+  width: 24px;
+  height: 24px;
+}
+
+/* Profile container */
+.profile-contain {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  margin-left: 8px;
+}
+
+.profile-contain p {
+  position: relative;
+  margin: 0;
+  margin-right: 12px;
+}
+
+.profile-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Online status indicator */
+.online {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 14px;
+  height: 14px;
+  background-color: #4CAF50;
+  border: 2px solid #fff;
+  border-radius: 50%;
+}
+
+/* Name container */
+.name-contain {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.profile-name-1 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.status {
+  font-size: 14px;
+  color: #6c757d;
+  margin: 2px 0 0 0;
+  font-weight: 400;
+}
+
+.action-icon-contain {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.top-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.top-button:hover {
+  background-color: #e9ecef;
+}
+
+.top-icon {
+  width: 24px;
+  height: 24px;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.top-button:hover .top-icon {
+  opacity: 1;
+}
+
+/* General icon styles */
+.icon {
+  display: block;
+}
+
+.date{
+    display: inline-block;
+    background-color: #dddddd;
+    color:#6c757d;
+    text-align: center;
+    border-radius: 4px;
+    padding: 2px 6px;
+    margin: 10px auto;
+    font-size: 13px;
+    font-weight: 500;
+}
+.date-contain{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}/* F
+ooter Styles */
+footer {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: white;
+  border-top: 1px solid #e9ecef;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  gap: 12px;
+}
+
+/* Attach file button */
+footer button:first-child {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 12px;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+footer button:first-child:hover {
+  background-color: #e9ecef;
+}
+
+.footer-icon {
+  width: 24px;
+  height: 24px;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+footer button:first-child:hover .footer-icon {
+  opacity: 1;
+}
+
+/* Chat input container */
+.chat-input-container {
+  flex: 1;
+  position: relative;
+}
+
+#message-input {
+  width: 100%;
+  padding: 15px 20px;
+  border: none;
+  border-radius: 25px;
+  background-color: #e9ecef;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+  outline: none;
+  transition: background-color 0.2s ease;
+}
+
+#message-input:focus {
+  background-color: #dee2e6;
+}
+
+#message-input::placeholder {
+  color: #6c757d;
+  font-weight: 400;
+}
+
+#send-button {
+  background: #20c997;
+  border: none;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(32, 201, 151, 0.3);
+}
+
+#send-button:hover {
+  background: #20A090;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(32, 201, 151, 0.4);
+}
+
+#send-button:active {
+  transform: translateY(0);
+}
+
+.send-icon {
+  width: 20px;
+  height: 20px;
+  filter: brightness(0) invert(1);
+}
+
+
+body {
+  padding-bottom: 80px;
+}
+
+.chat-messages {
+  margin-bottom: 20px;
+}/* File Atta
+chment Styles */
+.file-message {
+  margin: 10px 0;
+}
+
+.file-bubble {
+  background: transparent !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+}
+
+.file-attachment {
+  background: #fff;
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e9ecef;
+  max-width: 300px;
+}
+
+/* Image Attachments */
+.image-attachment .attached-image {
+  width: 100%;
+  max-width: 280px;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.image-attachment .attached-image:hover {
+  transform: scale(1.02);
+}
+
+/* Video Attachments */
+.video-attachment .attached-video {
+  width: 100%;
+  max-width: 280px;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+/* Audio Attachments */
+.audio-attachment .attached-audio {
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+/* Document Attachments */
+.document-attachment {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.file-icon {
+  width: 40px;
+  height: 40px;
+  background: #6c757d;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 18px;
+}
+
+.document-attachment .file-info {
+  flex: 1;
+}
+
+.download-btn {
+  background: #20A090;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.download-btn:hover {
+  background: #1ba085;
+}
+
+/* File Info Styles */
+.file-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.file-name {
+  font-weight: 500;
+  color: #333;
+  font-size: 14px;
+  word-break: break-word;
+}
+
+.file-size {
+  font-size: 12px;
+  color: #098576;
+}
+
+/* Message Styles for File Messages */
+.message.sent .file-attachment {
+  background: #9CF7EC;
+  border-color: #21A897;
+}
+
+.message.received .file-attachment {
+  background: #f5f5f5;
+  border-color: #ddd;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .file-attachment {
+    max-width: 250px;
+  }
+  
+  .image-attachment .attached-image,
+  .video-attachment .attached-video {
+    max-width: 230px;
+  }
+}/* 
+Chat Messages Styles */
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-height: calc(100vh - 160px);
+}
+
+.empty-chat {
+  text-align: center;
+  color: #6c757d;
+  font-style: italic;
+  margin-top: 50px;
+}
+
+/* Message Styles */
+.message {
+  display: flex;
+  margin-bottom: 15px;
+  animation: fadeIn 0.3s ease-in;
+}
+
+.message.sent {
+  justify-content: flex-end;
+}
+
+.message.received {
+  justify-content: flex-start;
+}
+
+.message-content {
+  display: flex;
+  flex-direction: column;
+  max-width: 70%;
+  align-items: flex-end;
+}
+
+.message.received .message-content {
+  align-items: flex-start;
+}
+
+.message-bubble {
+  padding: 12px 16px;
+  border-radius: 18px;
+  word-wrap: break-word;
+  position: relative;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.message.sent .message-bubble {
+  background: #20c997;
+  color: white;
+  border-bottom-right-radius: 4px;
+}
+
+.message.received .message-bubble {
+  background: #f1f3f4;
+  color: #333;
+  border-bottom-left-radius: 4px;
+}
+
+.message-bubble p {
+  margin: 0;
+  line-height: 1.4;
+  font-size: 15px;
+}
+
+.message-time {
+  font-size: 11px;
+  color: #6c757d;
+  margin-top: 4px;
+  align-self: flex-end;
+}
+
+.message.received .message-time {
+  align-self: flex-start;
+}
+
+/* Date separator */
+.date-contain {
+  text-align: center;
+  margin: 20px 0 10px 0;
+}
+
+.date {
+  display: inline-block;
+  background: #e9ecef;
+  color: #6c757d;
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  margin: 0;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Scrollbar styling */
+.chat-messages::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chat-messages::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .message-content {
+    max-width: 85%;
+  }
+  
+  .chat-messages {
+    padding: 15px;
+    max-height: calc(100vh - 140px);
+  }
+}
+
+/* Message status indicators */
+.message-status {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 2px;
+}
+
+.status-icon {
+  width: 12px;
+  height: 12px;
+  opacity: 0.7;
+}
+
+/* Typing indicator */
+.typing-message {
+  margin-bottom: 15px;
+}
+
+.typing-indicator {
+  display: flex;
+  align-items: center;
+  padding: 16px 20px;
+  background: #f1f3f4;
+  border-radius: 18px;
+  border-bottom-left-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  min-width: 60px;
+  justify-content: center;
+}
+
+.typing-dots {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.typing-dot {
+  width: 8px;
+  height: 8px;
+  background: #9e9e9e;
+  border-radius: 50%;
+  animation: typingBounce 1.4s infinite ease-in-out;
+}
+
+.typing-dot:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.typing-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes typingBounce {
+  0%, 80%, 100% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+  40% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
+/* Alternative typing animation - more WhatsApp-like */
+@keyframes typingPulse {
+  0%, 60%, 100% {
+    transform: scale(1);
+    opacity: 0.4;
+  }
+  30% {
+    transform: scale(1.3);
+    opacity: 1;
+  }
+}
+
+/* You can switch between animations by changing the animation name */
+.typing-dot-pulse {
+  width: 6px;
+  height: 6px;
+  background: #9e9e9e;
+  border-radius: 50%;
+  animation: typingPulse 1.4s infinite ease-in-out;
+}
