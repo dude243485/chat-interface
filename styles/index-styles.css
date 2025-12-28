@@ -169,6 +169,7 @@ body {
   
   .main-title {
     font-size: 56px;
+    color: yellow;
   }
   
   .thin-header-text {
@@ -193,6 +194,7 @@ body {
   
   .main-title {
     font-size: 54px;
+    color: greenyellow;
   }
   
   .thin-header-text {
@@ -217,6 +219,7 @@ body {
   
   .main-title {
     font-size: 50px;
+    color: blue;
   }
 
   .thin-header-text {
