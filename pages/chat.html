@@ -17,7 +17,7 @@
                 </button>
                 <h1 class="page-title">Messages</h1>
                 <button class="search-toggle-btn" id="searchToggle">
-                    <img src="../assets/setting.png" alt="Search" class="search-icon">
+                    <img src="../assets/search.png" alt="Search" class="search-icon">
                 </button>
             </div>
             <div class="search-container" id="searchContainer">
@@ -59,6 +59,130 @@
         <button class="action-btn delete-btn" id="deleteBtn">
             <img src="../assets/bin.png" alt="Delete" class="action-icon">
         </button>
+    </div>
+
+    <!-- Settings Modal -->
+    <div class="settings-modal" id="settingsModal">
+        <div class="modal-overlay" onclick="closeSettingsModal()">
+            <div class="settings-content" onclick="event.stopPropagation()">
+                <!-- Settings Header -->
+                <div class="settings-header">
+                    <button class="settings-back-btn" onclick="closeSettingsModal()">
+                        <img src="../assets/left.png" alt="Back" class="settings-back-icon">
+                    </button>
+                    <h2 class="settings-title">Settings</h2>
+                </div>
+
+                <!-- User Profile Section -->
+                <div class="settings-profile">
+                    <img src="../assets/my headshot.png" alt="Profile" class="settings-profile-image">
+                    <div class="settings-profile-info">
+                        <h3 class="settings-profile-name">You</h3>
+                        <p class="settings-profile-status">Never give up 💪</p>
+                    </div>
+                    <button class="settings-profile-edit">
+                        <img src="../assets/setting.png" alt="Edit" class="edit-icon">
+                    </button>
+                </div>
+
+                <!-- Settings Options -->
+                <div class="settings-options">
+                    <!-- Dark Mode -->
+                    <div class="settings-option" id="darkModeOption">
+                        <div class="option-icon">
+                            <img src="../assets/setting.png" alt="Dark Mode" class="option-icon-img">
+                        </div>
+                        <div class="option-content">
+                            <h4 class="option-title">Dark Mode</h4>
+                            <p class="option-description">Switch between light and dark theme</p>
+                        </div>
+                        <div class="option-toggle">
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="darkModeToggle">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Change Wallpaper -->
+                    <div class="settings-option" id="wallpaperOption">
+                        <div class="option-icon">
+                            <img src="../assets/setting.png" alt="Wallpaper" class="option-icon-img">
+                        </div>
+                        <div class="option-content">
+                            <h4 class="option-title">Change Wallpaper</h4>
+                            <p class="option-description">Customize chat background</p>
+                        </div>
+                        <div class="option-arrow">
+                            <img src="../assets/arrow.png" alt="Arrow" class="arrow-icon">
+                        </div>
+                    </div>
+
+                    <!-- Clear Chat History -->
+                    <div class="settings-option" id="clearHistoryOption">
+                        <div class="option-icon">
+                            <img src="../assets/bin.png" alt="Clear History" class="option-icon-img">
+                        </div>
+                        <div class="option-content">
+                            <h4 class="option-title">Clear All Chat History</h4>
+                            <p class="option-description">Delete all conversations permanently</p>
+                        </div>
+                        <div class="option-arrow">
+                            <img src="../assets/arrow.png" alt="Arrow" class="arrow-icon">
+                        </div>
+                    </div>
+
+                    <!-- Online Status -->
+                    <div class="settings-option" id="onlineStatusOption">
+                        <div class="option-icon">
+                            <img src="../assets/user.png" alt="Online Status" class="option-icon-img">
+                        </div>
+                        <div class="option-content">
+                            <h4 class="option-title">Online Status</h4>
+                            <p class="option-description">Show when you're active</p>
+                        </div>
+                        <div class="option-toggle">
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="onlineStatusToggle" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wallpaper Selection Modal -->
+    <div class="wallpaper-modal" id="wallpaperModal">
+        <div class="modal-overlay" onclick="closeWallpaperModal()">
+            <div class="wallpaper-content" onclick="event.stopPropagation()">
+                <div class="wallpaper-header">
+                    <button class="wallpaper-back-btn" onclick="closeWallpaperModal()">
+                        <img src="../assets/left.png" alt="Back" class="wallpaper-back-icon">
+                    </button>
+                    <h2 class="wallpaper-title">Choose Wallpaper</h2>
+                </div>
+                <div class="wallpaper-options">
+                    <div class="wallpaper-option" data-wallpaper="default">
+                        <div class="wallpaper-preview default-bg"></div>
+                        <span class="wallpaper-name">Default</span>
+                    </div>
+                    <div class="wallpaper-option" data-wallpaper="dark">
+                        <div class="wallpaper-preview dark-bg"></div>
+                        <span class="wallpaper-name">Dark</span>
+                    </div>
+                    <div class="wallpaper-option" data-wallpaper="blue">
+                        <div class="wallpaper-preview blue-bg"></div>
+                        <span class="wallpaper-name">Blue</span>
+                    </div>
+                    <div class="wallpaper-option" data-wallpaper="green">
+                        <div class="wallpaper-preview green-bg"></div>
+                        <span class="wallpaper-name">Green</span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="../scripts/chat.js"></script>

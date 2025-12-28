@@ -41,6 +41,26 @@ document.addEventListener('DOMContentLoaded', function() {
     // Clear storage when page loads
     clearStorageForFreshStart();
     
+    // Initialize dark mode on landing page
+    initializeDarkMode();
+    
+    // ========================================
+    // DARK MODE INITIALIZATION
+    // ========================================
+    
+    /**
+     * INITIALIZE DARK MODE
+     * Applies dark mode on landing page if previously enabled
+     */
+    function initializeDarkMode() {
+        const isDarkMode = localStorage.getItem('darkMode') === 'true';
+        
+        if (isDarkMode) {
+            document.body.classList.add('dark-mode');
+            document.documentElement.classList.add('dark-mode');
+        }
+    }
+    
     // ========================================
     // FUTURE ENHANCEMENTS
     // ========================================

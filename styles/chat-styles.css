@@ -368,4 +368,1145 @@ body {
 
 .chat-list::-webkit-scrollbar-thumb:hover {
   background: #a8a8a8;
+}/* S
+ettings Modal Styles */
+.settings-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.5);
+  align-items: center;
+  justify-content: center;
+}
+
+.settings-modal.active {
+  display: flex;
+}
+
+.settings-content {
+  width: 90%;
+  max-width: 400px;
+  max-height: 90vh;
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  animation: slideUp 0.3s ease;
+}
+
+/* Settings Header */
+.settings-header {
+  background: #2c3e50;
+  color: white;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.settings-back-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+}
+
+.settings-back-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.settings-back-icon {
+  width: 24px;
+  height: 24px;
+  filter: brightness(0) invert(1);
+}
+
+.settings-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* User Profile Section */
+.settings-profile {
+  padding: 25px 20px;
+  background: white;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  border-bottom: 1px solid #f1f3f4;
+}
+
+.settings-profile-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #e9ecef;
+}
+
+.settings-profile-info {
+  flex: 1;
+}
+
+.settings-profile-name {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 5px 0;
+}
+
+.settings-profile-status {
+  font-size: 14px;
+  color: #6c757d;
+  margin: 0;
+}
+
+.settings-profile-edit {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+}
+
+.settings-profile-edit:hover {
+  background: #f1f3f4;
+}
+
+.edit-icon {
+  width: 20px;
+  height: 20px;
+  opacity: 0.6;
+}
+
+/* Settings Options */
+.settings-options {
+  padding: 10px 0;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.settings-option {
+  display: flex;
+  align-items: center;
+  padding: 18px 20px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  border-bottom: 1px solid #f8f9fa;
+}
+
+.settings-option:hover {
+  background: #f8f9fa;
+}
+
+.option-icon {
+  width: 45px;
+  height: 45px;
+  background: #f1f3f4;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+  flex-shrink: 0;
+}
+
+.option-icon-img {
+  width: 22px;
+  height: 22px;
+  opacity: 0.7;
+}
+
+.option-content {
+  flex: 1;
+}
+
+.option-title {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  margin: 0 0 4px 0;
+}
+
+.option-description {
+  font-size: 13px;
+  color: #6c757d;
+  margin: 0;
+}
+
+.option-arrow {
+  margin-left: 10px;
+}
+
+.arrow-icon {
+  width: 16px;
+  height: 16px;
+  opacity: 0.4;
+  transform: rotate(180deg);
+}
+
+/* Toggle Switch */
+.option-toggle {
+  margin-left: 10px;
+}
+
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 28px;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.3s;
+  border-radius: 28px;
+}
+
+.toggle-slider:before {
+  position: absolute;
+  content: "";
+  height: 22px;
+  width: 22px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.3s;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+input:checked + .toggle-slider {
+  background-color: #20c997;
+}
+
+input:checked + .toggle-slider:before {
+  transform: translateX(22px);
+}
+
+/* Wallpaper Modal */
+.wallpaper-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1001;
+  background: rgba(0, 0, 0, 0.5);
+  align-items: center;
+  justify-content: center;
+}
+
+.wallpaper-modal.active {
+  display: flex;
+}
+
+.wallpaper-content {
+  width: 90%;
+  max-width: 400px;
+  max-height: 80vh;
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  animation: slideUp 0.3s ease;
+}
+
+.wallpaper-header {
+  background: #2c3e50;
+  color: white;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.wallpaper-back-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+}
+
+.wallpaper-back-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.wallpaper-back-icon {
+  width: 24px;
+  height: 24px;
+  filter: brightness(0) invert(1);
+}
+
+.wallpaper-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.wallpaper-options {
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+.wallpaper-option {
+  text-align: center;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+  border: 2px solid transparent;
+}
+
+.wallpaper-option:hover {
+  background: #f8f9fa;
+  transform: translateY(-2px);
+}
+
+.wallpaper-option.selected {
+  border-color: #20c997;
+  background: #e8f5f0;
+}
+
+.wallpaper-preview {
+  width: 100%;
+  height: 80px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #e9ecef;
+}
+
+.default-bg {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+.dark-bg {
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+}
+
+.blue-bg {
+  background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+}
+
+.green-bg {
+  background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+}
+
+.wallpaper-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+  background: #1a1a1a;
+  color: #ffffff;
+}
+
+body.dark-mode .chat-container {
+  background: #1a1a1a;
+}
+
+body.dark-mode .chat-header {
+  background: #2c2c2c;
+  border-bottom-color: #404040;
+}
+
+body.dark-mode .page-title {
+  color: #ffffff;
+}
+
+body.dark-mode .search-input {
+  background: #404040;
+  border-color: #555555;
+  color: #ffffff;
+}
+
+body.dark-mode .search-input::placeholder {
+  color: #aaaaaa;
+}
+
+body.dark-mode .chat-item {
+  background: #2c2c2c;
+  border-bottom-color: #404040;
+}
+
+body.dark-mode .chat-item:hover {
+  background: #404040;
+}
+
+body.dark-mode .chat-name {
+  color: #ffffff;
+}
+
+body.dark-mode .last-message {
+  color: #aaaaaa;
+}
+
+body.dark-mode .bottom-nav {
+  background: #2c2c2c;
+  border-top-color: #404040;
+}
+
+body.dark-mode .nav-btn {
+  color: #aaaaaa;
+}
+
+body.dark-mode .nav-btn.active {
+  color: #20c997;
+}
+
+/* Animations */
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  .settings-content,
+  .wallpaper-content {
+    width: 95%;
+    max-height: 95vh;
+  }
+  
+  .settings-header,
+  .wallpaper-header {
+    padding: 15px;
+  }
+  
+  .settings-profile {
+    padding: 20px 15px;
+  }
+  
+  .settings-option {
+    padding: 15px;
+  }
+  
+  .wallpaper-options {
+    padding: 15px;
+    gap: 12px;
+  }
+}/* Con
+firmation Modal Styles */
+.confirmation-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1002;
+  background: rgba(0, 0, 0, 0.6);
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.confirmation-modal.active {
+  display: flex;
+  opacity: 1;
+}
+
+.confirmation-overlay {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.confirmation-content {
+  background: white;
+  border-radius: 20px;
+  padding: 30px;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  animation: confirmationSlideUp 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.confirmation-icon {
+  width: 80px;
+  height: 80px;
+  background: #ffebee;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px auto;
+}
+
+.delete-icon {
+  width: 40px;
+  height: 40px;
+  opacity: 0.8;
+}
+
+.confirmation-title {
+  font-size: 22px;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 15px 0;
+}
+
+.confirmation-message {
+  font-size: 16px;
+  color: #666;
+  line-height: 1.5;
+  margin: 0 0 20px 0;
+}
+
+.confirmation-stats {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 20px;
+  margin: 20px 0;
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-number {
+  display: block;
+  font-size: 24px;
+  font-weight: 700;
+  color: #ff4757;
+  margin-bottom: 5px;
+}
+
+.stat-label {
+  font-size: 14px;
+  color: #666;
+  font-weight: 500;
+}
+
+.confirmation-buttons {
+  display: flex;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+.cancel-btn,
+.confirm-btn {
+  flex: 1;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cancel-btn {
+  background: #f1f3f4;
+  color: #333;
+}
+
+.cancel-btn:hover {
+  background: #e9ecef;
+}
+
+.confirm-btn {
+  background: #ff4757;
+  color: white;
+}
+
+.confirm-btn:hover {
+  background: #ff3742;
+  transform: translateY(-1px);
+}
+
+/* Progress Modal Styles */
+.progress-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1003;
+  background: rgba(0, 0, 0, 0.7);
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.progress-modal.active {
+  display: flex;
+  opacity: 1;
+}
+
+.progress-overlay {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.progress-content {
+  background: white;
+  border-radius: 20px;
+  padding: 40px;
+  max-width: 300px;
+  width: 100%;
+  text-align: center;
+  animation: progressSlideUp 0.3s ease;
+}
+
+.progress-spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid #f1f3f4;
+  border-top: 4px solid #ff4757;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 20px auto;
+}
+
+.progress-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 10px 0;
+}
+
+.progress-message {
+  font-size: 14px;
+  color: #666;
+  margin: 0;
+}
+
+/* Success Modal Styles */
+.success-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1004;
+  background: rgba(0, 0, 0, 0.6);
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.success-modal.active {
+  display: flex;
+  opacity: 1;
+}
+
+.success-overlay {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.success-content {
+  background: white;
+  border-radius: 20px;
+  padding: 40px;
+  max-width: 350px;
+  width: 100%;
+  text-align: center;
+  animation: successSlideUp 0.3s ease;
+}
+
+.success-icon {
+  width: 80px;
+  height: 80px;
+  background: #d4edda;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px auto;
+}
+
+.checkmark {
+  font-size: 40px;
+  color: #28a745;
+  font-weight: bold;
+}
+
+.success-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 15px 0;
+}
+
+.success-message {
+  font-size: 16px;
+  color: #666;
+  line-height: 1.5;
+  margin: 0 0 15px 0;
+}
+
+.success-note {
+  font-size: 14px;
+  color: #28a745;
+  background: #d4edda;
+  padding: 10px 15px;
+  border-radius: 8px;
+  margin-top: 15px;
+}
+
+/* Animations */
+@keyframes confirmationSlideUp {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes progressSlideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes successSlideUp {
+  from {
+    transform: translateY(30px) scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Dark Mode Support for New Modals */
+body.dark-mode .confirmation-content,
+body.dark-mode .progress-content,
+body.dark-mode .success-content {
+  background: #2c2c2c;
+  color: #ffffff;
+}
+
+body.dark-mode .confirmation-title,
+body.dark-mode .progress-title,
+body.dark-mode .success-title {
+  color: #ffffff;
+}
+
+body.dark-mode .confirmation-message,
+body.dark-mode .progress-message,
+body.dark-mode .success-message {
+  color: #aaaaaa;
+}
+
+body.dark-mode .confirmation-stats {
+  background: #404040;
+}
+
+body.dark-mode .stat-label {
+  color: #aaaaaa;
+}
+
+body.dark-mode .cancel-btn {
+  background: #404040;
+  color: #ffffff;
+}
+
+body.dark-mode .cancel-btn:hover {
+  background: #555555;
+}
+
+body.dark-mode .success-note {
+  background: #1e4d2b;
+  color: #4ade80;
+}
+
+/* Responsive Design for New Modals */
+@media (max-width: 480px) {
+  .confirmation-content,
+  .progress-content,
+  .success-content {
+    margin: 20px;
+    padding: 25px;
+  }
+  
+  .confirmation-title,
+  .success-title {
+    font-size: 18px;
+  }
+  
+  .confirmation-message,
+  .success-message {
+    font-size: 14px;
+  }
+  
+  .confirmation-stats {
+    padding: 15px;
+    gap: 15px;
+  }
+  
+  .stat-number {
+    font-size: 20px;
+  }
+  
+  .confirmation-buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+}/* Dark 
+Mode Notification */
+.dark-mode-notification {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-100px);
+  background: #333;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 500;
+  z-index: 2000;
+  opacity: 0;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode-notification.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+body.dark-mode .dark-mode-notification {
+  background: #20c997;
+  color: white;
+}
+
+/* Enhanced Dark Mode Styles */
+body.dark-mode,
+html.dark-mode {
+  background: #1a1a1a;
+  color: #ffffff;
+}
+
+body.dark-mode .chat-container {
+  background: #1a1a1a;
+}
+
+body.dark-mode .chat-header {
+  background: #2c2c2c;
+  border-bottom-color: #404040;
+}
+
+body.dark-mode .page-title {
+  color: #ffffff;
+}
+
+body.dark-mode .search-input {
+  background: #404040;
+  border-color: #555555;
+  color: #ffffff;
+}
+
+body.dark-mode .search-input::placeholder {
+  color: #aaaaaa;
+}
+
+body.dark-mode .search-input:focus {
+  background: #4a4a4a;
+  border-color: #20c997;
+}
+
+body.dark-mode .chat-item {
+  background: #2c2c2c;
+  border-bottom-color: #404040;
+}
+
+body.dark-mode .chat-item:hover {
+  background: #404040;
+}
+
+body.dark-mode .chat-name {
+  color: #ffffff;
+}
+
+body.dark-mode .last-message {
+  color: #aaaaaa;
+}
+
+body.dark-mode .chat-time {
+  color: #888888;
+}
+
+body.dark-mode .unread-badge {
+  background: #ff4757;
+  color: white;
+}
+
+body.dark-mode .bottom-nav {
+  background: #2c2c2c;
+  border-top-color: #404040;
+}
+
+body.dark-mode .nav-btn {
+  color: #aaaaaa;
+}
+
+body.dark-mode .nav-btn.active {
+  color: #20c997;
+}
+
+body.dark-mode .nav-btn:hover {
+  background: #404040;
+}
+
+body.dark-mode .empty-state {
+  color: #aaaaaa;
+}
+
+/* Dark Mode for Settings Modal */
+body.dark-mode .settings-content {
+  background: #2c2c2c;
+  color: #ffffff;
+}
+
+body.dark-mode .settings-header {
+  background: #1a1a1a;
+}
+
+body.dark-mode .settings-title {
+  color: #ffffff;
+}
+
+body.dark-mode .settings-profile {
+  background: #2c2c2c;
+  border-bottom-color: #404040;
+}
+
+body.dark-mode .settings-profile-name {
+  color: #ffffff;
+}
+
+body.dark-mode .settings-profile-status {
+  color: #aaaaaa;
+}
+
+body.dark-mode .settings-option {
+  border-bottom-color: #404040;
+}
+
+body.dark-mode .settings-option:hover {
+  background: #404040;
+}
+
+body.dark-mode .option-icon {
+  background: #404040;
+}
+
+body.dark-mode .option-title {
+  color: #ffffff;
+}
+
+body.dark-mode .option-description {
+  color: #aaaaaa;
+}
+
+body.dark-mode .toggle-slider {
+  background-color: #555555;
+}
+
+body.dark-mode input:checked + .toggle-slider {
+  background-color: #20c997;
+}
+
+/* Dark Mode for Wallpaper Modal */
+body.dark-mode .wallpaper-content {
+  background: #2c2c2c;
+  color: #ffffff;
+}
+
+body.dark-mode .wallpaper-header {
+  background: #1a1a1a;
+}
+
+body.dark-mode .wallpaper-title {
+  color: #ffffff;
+}
+
+body.dark-mode .wallpaper-option {
+  border-color: #404040;
+}
+
+body.dark-mode .wallpaper-option:hover {
+  background: #404040;
+}
+
+body.dark-mode .wallpaper-option.selected {
+  border-color: #20c997;
+  background: #1e4d2b;
+}
+
+body.dark-mode .wallpaper-name {
+  color: #ffffff;
+}
+
+/* Dark Mode for Swipe Actions */
+body.dark-mode .swipe-actions {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+body.dark-mode .mute-btn {
+  background: #555555;
+}
+
+body.dark-mode .delete-btn {
+  background: #ff4757;
+}
+
+/* Dark Mode Transitions */
+body,
+.chat-container,
+.chat-header,
+.chat-item,
+.bottom-nav,
+.settings-content,
+.wallpaper-content {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Dark Mode for Buttons and Icons */
+body.dark-mode .back-btn:hover,
+body.dark-mode .search-toggle-btn:hover {
+  background: #404040;
+}
+
+body.dark-mode .settings-back-btn:hover,
+body.dark-mode .wallpaper-back-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .settings-profile-edit:hover {
+  background: #404040;
+}
+
+/* Dark Mode for Profile Images */
+body.dark-mode .profile-image,
+body.dark-mode .settings-profile-image {
+  border-color: #404040;
+}
+
+/* Dark Mode for Online Status */
+body.dark-mode .online-status {
+  border-color: #2c2c2c;
+}
+
+/* Ensure proper contrast in dark mode */
+body.dark-mode .back-icon,
+body.dark-mode .search-icon,
+body.dark-mode .nav-icon,
+body.dark-mode .action-icon {
+  filter: brightness(0) invert(1);
+  opacity: 0.8;
+}
+
+body.dark-mode .nav-btn.active .nav-icon {
+  filter: none;
+  opacity: 1;
+}/* D
+ark Mode Icons in Settings Modal */
+body.dark-mode .option-icon-img,
+body.dark-mode .edit-icon,
+body.dark-mode .delete-icon,
+body.dark-mode .settings-back-icon,
+body.dark-mode .wallpaper-back-icon,
+body.dark-mode .arrow-icon {
+  filter: brightness(0) invert(1);
+  opacity: 0.8;
+}
+
+body.dark-mode .option-icon-img:hover,
+body.dark-mode .edit-icon:hover {
+  opacity: 1;
+}
+
+/* Dark Mode for Confirmation Modal Icons */
+body.dark-mode .confirmation-content .delete-icon {
+  filter: brightness(0) invert(1);
+  opacity: 0.8;
+}
+
+/* Dark Mode for Action Icons */
+body.dark-mode .action-icon {
+  filter: brightness(0) invert(1);
+  opacity: 0.9;
+}
+
+/* Dark Mode for Navigation Icons */
+body.dark-mode .back-icon,
+body.dark-mode .search-icon {
+  filter: brightness(0) invert(1);
+  opacity: 0.8;
+}
+
+body.dark-mode .back-btn:hover .back-icon,
+body.dark-mode .search-toggle-btn:hover .search-icon {
+  opacity: 1;
 }

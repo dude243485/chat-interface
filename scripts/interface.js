@@ -44,6 +44,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     initializeChat();        // Load any existing messages from storage
     loadCurrentContact();    // Load the selected contact's information and chat history
+    applyWallpaperSettings(); // Apply saved wallpaper settings
+    applyDarkModeSettings(); // Apply saved dark mode settings
     
     // ========================================
     // NAVIGATION FUNCTIONALITY
@@ -58,6 +60,315 @@ document.addEventListener('DOMContentLoaded', function() {
             window.location.href = 'chat.html';  // Go back to chat list page
         });
     }
+
+    /**
+     * MENU BUTTON - Shows menu options
+     * When clicked, shows available menu options for the chat interface
+     */
+    const menuButton = document.getElementById('menu_button');
+    if (menuButton) {
+        menuButton.addEventListener('click', function() {
+            showInterfaceMenu();
+        });
+    }
+
+    /**
+     * SHOW INTERFACE MENU
+     * Creates and displays a menu modal with chat-specific options
+     */
+    function showInterfaceMenu() {
+        // Remove existing menu if any
+        const existingMenu = document.querySelector('.interface-menu-modal');
+        if (existingMenu) {
+            existingMenu.remove();
+        }
+
+        const menuModal = document.createElement('div');
+        menuModal.className = 'interface-menu-modal';
+        menuModal.innerHTML = `
+            <div class="menu-overlay" onclick="closeInterfaceMenu()">
+                <div class="menu-content" onclick="event.stopPropagation()">
+                    <div class="menu-header">
+                        <h3>Chat Options</h3>
+                        <button class="menu-close-btn" onclick="closeInterfaceMenu()">
+                            <img src="../assets/left.png" alt="Close" class="close-icon">
+                        </button>
+                    </div>
+                    <div class="menu-options">
+                        <div class="menu-option" onclick="showChatInfo()">
+                            <div class="option-icon">
+                                <img src="../assets/user.png" alt="Chat Info" class="menu-option-icon">
+                            </div>
+                            <div class="option-text">
+                                <span class="option-title">Chat Info</span>
+                                <span class="option-desc">View contact details</span>
+                            </div>
+                        </div>
+                        
+                        <div class="menu-option" onclick="toggleChatMute()">
+                            <div class="option-icon">
+                                <img src="../assets/disabled.png" alt="Mute" class="menu-option-icon">
+                            </div>
+                            <div class="option-text">
+                                <span class="option-title">Mute Notifications</span>
+                                <span class="option-desc">Turn off notifications</span>
+                            </div>
+                        </div>
+                        
+                        <div class="menu-option" onclick="openWallpaperSelector()">
+                            <div class="option-icon">
+                                <img src="../assets/setting.png" alt="Wallpaper" class="menu-option-icon">
+                            </div>
+                            <div class="option-text">
+                                <span class="option-title">Change Wallpaper</span>
+                                <span class="option-desc">Customize chat background</span>
+                            </div>
+                        </div>
+                        
+                        <div class="menu-option" onclick="clearCurrentChat()">
+                            <div class="option-icon">
+                                <img src="../assets/bin.png" alt="Clear Chat" class="menu-option-icon">
+                            </div>
+                            <div class="option-text">
+                                <span class="option-title">Clear Chat</span>
+                                <span class="option-desc">Delete this conversation</span>
+                            </div>
+                        </div>
+                        
+                        <div class="menu-option" onclick="openChatSettings()">
+                            <div class="option-icon">
+                                <img src="../assets/setting.png" alt="Settings" class="menu-option-icon">
+                            </div>
+                            <div class="option-text">
+                                <span class="option-title">Settings</span>
+                                <span class="option-desc">App preferences</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        document.body.appendChild(menuModal);
+        
+        // Show menu with animation
+        setTimeout(() => {
+            menuModal.classList.add('active');
+        }, 10);
+    }
+
+    /**
+     * CLOSE INTERFACE MENU
+     * Closes the interface menu modal
+     */
+    window.closeInterfaceMenu = function() {
+        const menuModal = document.querySelector('.interface-menu-modal');
+        if (menuModal) {
+            menuModal.classList.remove('active');
+            setTimeout(() => {
+                if (document.body.contains(menuModal)) {
+                    document.body.removeChild(menuModal);
+                }
+            }, 300);
+        }
+    };
+
+    /**
+     * CLEAR CURRENT CHAT
+     * Clears the chat history for the current contact only
+     */
+    window.clearCurrentChat = function() {
+        const currentContactId = localStorage.getItem('currentChatContact');
+        if (!currentContactId) {
+            alert('No active chat to clear.');
+            return;
+        }
+
+        const confirmed = confirm(
+            'Are you sure you want to clear this chat?\n\n' +
+            'This will delete all messages in this conversation. This action cannot be undone.'
+        );
+
+        if (confirmed) {
+            try {
+                // Get current contact info
+                const contacts = JSON.parse(localStorage.getItem('chatContacts') || '[]');
+                const contact = contacts.find(c => c.id === currentContactId);
+                
+                // Clear chat history for this contact
+                const allHistory = localStorage.getItem('chatHistory');
+                if (allHistory) {
+                    const history = JSON.parse(allHistory);
+                    delete history[currentContactId];
+                    localStorage.setItem('chatHistory', JSON.stringify(history));
+                }
+
+                // Update contact's last message
+                if (contact) {
+                    contact.lastMessage = 'No messages yet';
+                    contact.lastMessageTime = '';
+                    contact.unreadCount = 0;
+                    localStorage.setItem('chatContacts', JSON.stringify(contacts));
+                }
+
+                // Clear the chat UI
+                const chatMessages = document.getElementById('chat-messages');
+                if (chatMessages) {
+                    chatMessages.innerHTML = '<div class="empty-chat" id="empty-chat"><p>No messages yet. Start chatting!</p></div>';
+                }
+
+                // Close menu and show success
+                closeInterfaceMenu();
+                
+                setTimeout(() => {
+                    alert('Chat cleared successfully!');
+                }, 300);
+
+            } catch (error) {
+                console.error('Error clearing chat:', error);
+                alert('An error occurred while clearing the chat. Please try again.');
+            }
+        }
+    };
+
+    /**
+     * OPEN WALLPAPER SELECTOR
+     * Opens the wallpaper selection modal for the chat interface
+     */
+    window.openWallpaperSelector = function() {
+        closeInterfaceMenu();
+        
+        // Create wallpaper selector modal
+        const wallpaperModal = document.createElement('div');
+        wallpaperModal.className = 'wallpaper-selector-modal';
+        wallpaperModal.innerHTML = `
+            <div class="wallpaper-overlay" onclick="closeWallpaperSelector()">
+                <div class="wallpaper-selector-content" onclick="event.stopPropagation()">
+                    <div class="wallpaper-header">
+                        <button class="wallpaper-back-btn" onclick="closeWallpaperSelector()">
+                            <img src="../assets/left.png" alt="Back" class="wallpaper-back-icon">
+                        </button>
+                        <h3>Choose Wallpaper</h3>
+                    </div>
+                    <div class="wallpaper-grid">
+                        <div class="wallpaper-item" data-wallpaper="default" onclick="selectInterfaceWallpaper('default')">
+                            <div class="wallpaper-preview default-bg"></div>
+                            <span class="wallpaper-label">Default</span>
+                        </div>
+                        <div class="wallpaper-item" data-wallpaper="dark" onclick="selectInterfaceWallpaper('dark')">
+                            <div class="wallpaper-preview dark-bg"></div>
+                            <span class="wallpaper-label">Dark</span>
+                        </div>
+                        <div class="wallpaper-item" data-wallpaper="blue" onclick="selectInterfaceWallpaper('blue')">
+                            <div class="wallpaper-preview blue-bg"></div>
+                            <span class="wallpaper-label">Blue</span>
+                        </div>
+                        <div class="wallpaper-item" data-wallpaper="green" onclick="selectInterfaceWallpaper('green')">
+                            <div class="wallpaper-preview green-bg"></div>
+                            <span class="wallpaper-label">Green</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        document.body.appendChild(wallpaperModal);
+        
+        // Load current wallpaper selection
+        loadCurrentInterfaceWallpaper();
+        
+        // Show modal
+        setTimeout(() => {
+            wallpaperModal.classList.add('active');
+        }, 10);
+    };
+
+    /**
+     * CLOSE WALLPAPER SELECTOR
+     * Closes the wallpaper selection modal
+     */
+    window.closeWallpaperSelector = function() {
+        const wallpaperModal = document.querySelector('.wallpaper-selector-modal');
+        if (wallpaperModal) {
+            wallpaperModal.classList.remove('active');
+            setTimeout(() => {
+                if (document.body.contains(wallpaperModal)) {
+                    document.body.removeChild(wallpaperModal);
+                }
+            }, 300);
+        }
+    };
+
+    /**
+     * LOAD CURRENT INTERFACE WALLPAPER
+     * Highlights the currently selected wallpaper
+     */
+    function loadCurrentInterfaceWallpaper() {
+        const currentWallpaper = localStorage.getItem('interfaceWallpaper') || 'default';
+        const wallpaperItems = document.querySelectorAll('.wallpaper-item');
+        
+        wallpaperItems.forEach(item => {
+            item.classList.remove('selected');
+            if (item.dataset.wallpaper === currentWallpaper) {
+                item.classList.add('selected');
+            }
+        });
+    }
+
+    /**
+     * SELECT INTERFACE WALLPAPER
+     * Applies the selected wallpaper to the chat interface
+     */
+    window.selectInterfaceWallpaper = function(wallpaper) {
+        // Save wallpaper preference
+        localStorage.setItem('interfaceWallpaper', wallpaper);
+        
+        // Apply wallpaper immediately
+        applyWallpaperSettings();
+        
+        // Update selection UI
+        loadCurrentInterfaceWallpaper();
+        
+        // Show feedback and close
+        setTimeout(() => {
+            closeWallpaperSelector();
+            setTimeout(() => {
+                alert(`Wallpaper changed to ${wallpaper}!`);
+            }, 300);
+        }, 500);
+    };
+
+    // Placeholder functions for other menu options
+    window.showChatInfo = function() {
+        closeInterfaceMenu();
+        const currentContactId = localStorage.getItem('currentChatContact');
+        const contacts = JSON.parse(localStorage.getItem('chatContacts') || '[]');
+        const contact = contacts.find(c => c.id === currentContactId);
+        
+        if (contact) {
+            alert(`Chat Info:\n\nName: ${contact.name}\nStatus: ${contact.isOnline ? 'Online' : 'Offline'}\nMuted: ${contact.isMuted ? 'Yes' : 'No'}`);
+        } else {
+            alert('No contact information available.');
+        }
+    };
+
+    window.toggleChatMute = function() {
+        closeInterfaceMenu();
+        const currentContactId = localStorage.getItem('currentChatContact');
+        const contacts = JSON.parse(localStorage.getItem('chatContacts') || '[]');
+        const contact = contacts.find(c => c.id === currentContactId);
+        
+        if (contact) {
+            contact.isMuted = !contact.isMuted;
+            localStorage.setItem('chatContacts', JSON.stringify(contacts));
+            alert(`Notifications ${contact.isMuted ? 'muted' : 'unmuted'} for ${contact.name}`);
+        }
+    };
+
+    window.openChatSettings = function() {
+        closeInterfaceMenu();
+        alert('Settings feature coming soon!\n\nFor now, you can access settings from the chat list page.');
+    };
 
     // ========================================
     // MESSAGE SENDING FUNCTIONALITY
@@ -690,4 +1001,41 @@ document.addEventListener('DOMContentLoaded', function() {
             closeMediaModal();
         }
     });
+
+    // ========================================
+    // SETTINGS APPLICATION FUNCTIONS
+    // ========================================
+
+    /**
+     * APPLY WALLPAPER SETTINGS
+     * Applies the saved wallpaper to the chat interface
+     */
+    function applyWallpaperSettings() {
+        const wallpaper = localStorage.getItem('interfaceWallpaper') || 'default';
+        const chatMessages = document.getElementById('chat-messages');
+        
+        if (chatMessages) {
+            // Remove existing wallpaper classes
+            chatMessages.classList.remove('wallpaper-default', 'wallpaper-dark', 'wallpaper-blue', 'wallpaper-green');
+            
+            // Apply selected wallpaper
+            chatMessages.classList.add(`wallpaper-${wallpaper}`);
+        }
+    }
+
+    /**
+     * APPLY DARK MODE SETTINGS
+     * Applies dark mode if enabled in settings
+     */
+    function applyDarkModeSettings() {
+        const isDarkMode = localStorage.getItem('darkMode') === 'true';
+        
+        if (isDarkMode) {
+            document.body.classList.add('dark-mode');
+            document.documentElement.classList.add('dark-mode');
+        } else {
+            document.body.classList.remove('dark-mode');
+            document.documentElement.classList.remove('dark-mode');
+        }
+    }
 });

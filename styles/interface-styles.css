@@ -142,6 +142,34 @@ header {
   opacity: 1;
 }
 
+/* Menu Button Styles */
+.menu-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-button:hover {
+  background-color: #e9ecef;
+}
+
+.menu-icon {
+  width: 24px;
+  height: 24px;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.menu-button:hover .menu-icon {
+  opacity: 1;
+}
+
 /* General icon styles */
 .icon {
   display: block;
@@ -803,5 +831,559 @@ edia Modal Styles */
     right: 10px;
     width: 35px;
     height: 35px;
+  }
+}/
+* Wallpaper Styles for Chat Interface */
+.chat-messages.wallpaper-default {
+  background: #f8f9fa;
+}
+
+.chat-messages.wallpaper-dark {
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+}
+
+.chat-messages.wallpaper-blue {
+  background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+}
+
+.chat-messages.wallpaper-green {
+  background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+}
+
+/* Dark Mode Styles for Interface */
+body.dark-mode,
+html.dark-mode {
+  background: #1a1a1a;
+  color: #ffffff;
+}
+
+body.dark-mode header {
+  background: #2c2c2c;
+  border-bottom-color: #404040;
+}
+
+body.dark-mode .profile-name-1 {
+  color: #ffffff;
+}
+
+body.dark-mode .status {
+  color: #aaaaaa;
+}
+
+body.dark-mode .date {
+  background: #404040;
+  color: #aaaaaa;
+}
+
+body.dark-mode .chat-messages {
+  background: #1a1a1a;
+}
+
+body.dark-mode .empty-chat {
+  color: #aaaaaa;
+}
+
+body.dark-mode .message.sent .message-bubble {
+  background: #20c997;
+}
+
+body.dark-mode .message.received .message-bubble {
+  background: #404040;
+  color: #ffffff;
+}
+
+body.dark-mode .message-time {
+  color: #888888;
+}
+
+body.dark-mode footer {
+  background: #2c2c2c;
+  border-top-color: #404040;
+}
+
+body.dark-mode #message-input {
+  background: #404040;
+  border-color: #555555;
+  color: #ffffff;
+}
+
+body.dark-mode #message-input::placeholder {
+  color: #aaaaaa;
+}
+
+body.dark-mode #message-input:focus {
+  background: #4a4a4a;
+  border-color: #20c997;
+}
+
+body.dark-mode .file-attachment {
+  background: #404040;
+  border-color: #555555;
+}
+
+body.dark-mode .file-name {
+  color: #ffffff;
+}
+
+body.dark-mode .file-size {
+  color: #aaaaaa;
+}
+
+body.dark-mode .typing-indicator {
+  background: #404040;
+}
+
+body.dark-mode .typing-dot {
+  background: #aaaaaa;
+}
+
+/* Dark Mode for Media Modal */
+body.dark-mode .media-modal {
+  background: rgba(0, 0, 0, 0.95);
+}
+
+body.dark-mode .modal-content {
+  background: #2c2c2c;
+}
+
+body.dark-mode .modal-header {
+  background: #1a1a1a;
+  border-bottom-color: #404040;
+}
+
+body.dark-mode .modal-header h3 {
+  color: #ffffff;
+}
+
+body.dark-mode .modal-close {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .modal-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Dark Mode Transitions for Interface */
+body,
+header,
+footer,
+.chat-messages,
+.message-bubble,
+#message-input,
+.file-attachment,
+.modal-content {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Dark Mode for Icons in Interface */
+body.dark-mode .back-icon,
+body.dark-mode .top-icon,
+body.dark-mode .menu-icon,
+body.dark-mode .footer-icon {
+  filter: brightness(0) invert(1);
+  opacity: 0.8;
+}
+
+body.dark-mode .send-icon {
+  filter: brightness(0) invert(1);
+}
+
+body.dark-mode .back-button:hover,
+body.dark-mode .top-button:hover,
+body.dark-mode .menu-button:hover,
+body.dark-mode footer button:first-child:hover {
+  background: #404040;
+}
+
+/* Dark Mode for Profile Elements */
+body.dark-mode .profile-image {
+  border-color: #404040;
+}
+
+body.dark-mode .online {
+  border-color: #2c2c2c;
+}
+
+/* Wallpaper adjustments for dark backgrounds */
+body.dark-mode .chat-messages.wallpaper-dark .message.received .message-bubble {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+body.dark-mode .chat-messages.wallpaper-blue .message.received .message-bubble {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+}
+
+body.dark-mode .chat-messages.wallpaper-green .message.received .message-bubble {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+}/*
+ Interface Menu Modal Styles */
+.interface-menu-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.5);
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.interface-menu-modal.active {
+  display: flex;
+  opacity: 1;
+}
+
+.menu-overlay {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.menu-content {
+  background: white;
+  border-radius: 20px;
+  max-width: 350px;
+  width: 100%;
+  overflow: hidden;
+  animation: menuSlideUp 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.menu-header {
+  background: #20c997;
+  color: white;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.menu-header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.menu-close-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+}
+
+.menu-close-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.close-icon {
+  width: 20px;
+  height: 20px;
+  filter: brightness(0) invert(1);
+  transform: rotate(180deg);
+}
+
+.menu-options {
+  padding: 10px 0;
+}
+
+.menu-option {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  border-bottom: 1px solid #f8f9fa;
+}
+
+.menu-option:hover {
+  background: #f8f9fa;
+}
+
+.menu-option:last-child {
+  border-bottom: none;
+}
+
+.menu-option .option-icon {
+  width: 40px;
+  height: 40px;
+  background: #f1f3f4;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+  flex-shrink: 0;
+}
+
+.menu-option-icon {
+  width: 20px;
+  height: 20px;
+  opacity: 0.7;
+}
+
+.option-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.option-title {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 2px;
+}
+
+.option-desc {
+  font-size: 13px;
+  color: #6c757d;
+}
+
+/* Wallpaper Selector Modal Styles */
+.wallpaper-selector-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1001;
+  background: rgba(0, 0, 0, 0.5);
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.wallpaper-selector-modal.active {
+  display: flex;
+  opacity: 1;
+}
+
+.wallpaper-overlay {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.wallpaper-selector-content {
+  background: white;
+  border-radius: 20px;
+  max-width: 400px;
+  width: 100%;
+  overflow: hidden;
+  animation: wallpaperSlideUp 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.wallpaper-header {
+  background: #20c997;
+  color: white;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.wallpaper-back-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+}
+
+.wallpaper-back-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.wallpaper-back-icon {
+  width: 20px;
+  height: 20px;
+  filter: brightness(0) invert(1);
+}
+
+.wallpaper-header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.wallpaper-grid {
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+.wallpaper-item {
+  text-align: center;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+  border: 2px solid transparent;
+}
+
+.wallpaper-item:hover {
+  background: #f8f9fa;
+  transform: translateY(-2px);
+}
+
+.wallpaper-item.selected {
+  border-color: #20c997;
+  background: #e8f5f0;
+}
+
+.wallpaper-preview {
+  width: 100%;
+  height: 80px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #e9ecef;
+}
+
+.wallpaper-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+}
+
+/* Wallpaper Preview Backgrounds */
+.default-bg {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+.dark-bg {
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+}
+
+.blue-bg {
+  background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+}
+
+.green-bg {
+  background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+}
+
+/* Dark Mode Support for Interface Modals */
+body.dark-mode .menu-content,
+body.dark-mode .wallpaper-selector-content {
+  background: #2c2c2c;
+  color: #ffffff;
+}
+
+body.dark-mode .menu-header,
+body.dark-mode .wallpaper-header {
+  background: #1a1a1a;
+}
+
+body.dark-mode .menu-option {
+  border-bottom-color: #404040;
+}
+
+body.dark-mode .menu-option:hover {
+  background: #404040;
+}
+
+body.dark-mode .menu-option .option-icon {
+  background: #404040;
+}
+
+body.dark-mode .option-title {
+  color: #ffffff;
+}
+
+body.dark-mode .option-desc {
+  color: #aaaaaa;
+}
+
+body.dark-mode .menu-option-icon {
+  filter: brightness(0) invert(1);
+}
+
+body.dark-mode .wallpaper-item {
+  border-color: #404040;
+}
+
+body.dark-mode .wallpaper-item:hover {
+  background: #404040;
+}
+
+body.dark-mode .wallpaper-item.selected {
+  border-color: #20c997;
+  background: #1e4d2b;
+}
+
+body.dark-mode .wallpaper-label {
+  color: #ffffff;
+}
+
+/* Animations */
+@keyframes menuSlideUp {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes wallpaperSlideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Responsive Design for Interface Modals */
+@media (max-width: 480px) {
+  .menu-content,
+  .wallpaper-selector-content {
+    margin: 20px;
+    max-width: calc(100% - 40px);
+  }
+  
+  .menu-header,
+  .wallpaper-header {
+    padding: 15px;
+  }
+  
+  .menu-option {
+    padding: 12px 15px;
+  }
+  
+  .wallpaper-grid {
+    padding: 15px;
+    gap: 12px;
+  }
+  
+  .wallpaper-item {
+    padding: 12px;
+  }
+  
+  .wallpaper-preview {
+    height: 70px;
   }
 }

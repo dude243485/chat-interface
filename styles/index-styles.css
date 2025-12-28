@@ -214,3 +214,56 @@ body {
 .action-section {
   animation-delay: 0.3s;
 }
+/* Dark Mode Styles for Index Page */
+body.dark-mode,
+html.dark-mode {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 50%, #1a1a1a 100%);
+  color: #ffffff;
+}
+
+body.dark-mode .container {
+  background: transparent;
+}
+
+body.dark-mode .logo-icon {
+  background: #20c997;
+  color: #ffffff;
+}
+
+body.dark-mode .logo-text {
+  color: #ffffff;
+}
+
+body.dark-mode .main-title {
+  color: #ffffff;
+}
+
+body.dark-mode .thin-header-text {
+  color: #aaaaaa;
+}
+
+body.dark-mode .subtitle {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+body.dark-mode .signup-btn {
+  background: #20c997;
+  color: #ffffff;
+  box-shadow: 0 4px 20px rgba(32, 201, 151, 0.3);
+}
+
+body.dark-mode .signup-btn:hover {
+  background: #1ba085;
+  box-shadow: 0 6px 25px rgba(32, 201, 151, 0.4);
+}
+
+/* Dark Mode Transitions for Index */
+body,
+.container,
+.logo-icon,
+.logo-text,
+.main-title,
+.subtitle,
+.signup-btn {
+  transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
