@@ -430,32 +430,124 @@ document.addEventListener('DOMContentLoaded', function() {
     /**
      * SIMULATE RECEIVED MESSAGE
      * Creates realistic auto-replies to make the chat feel interactive
-     * Shows typing indicator first, then sends a random response
+     * Shows typing indicator first, then sends a random response based on character
      */
     function simulateReceivedMessage() {
         // Show the typing indicator (3 bouncing dots like WhatsApp)
         showTypingIndicator();
         
-        // Array of possible responses - randomly selected to make conversation feel natural
-        const responses = [
-            "That's interesting!",
-            "I see what you mean.",
-            "Thanks for sharing that.",
-            "Got it!",
-            "That makes sense.",
-            "I understand.",
-            "Absolutely!",
-            "Good point!",
-            "I agree with you.",
-            "Tell me more about that.",
-            "How are you doing?",
-            "That sounds great!",
-            "I'm here if you need anything.",
-            "What do you think about that?",
-            "That's a good idea!"
-        ];
+        // Get current contact to determine their personality
+        const currentContactId = localStorage.getItem('currentChatContact');
+        let responses = [];
         
-        // Pick a random response from the array
+        // Character-specific response lines
+        const characterResponses = {
+            'aeolus': [
+                "You dare summon me, Aeolus, Master of the Four Winds, for this... mortal trifle?",
+                "Your puny human problems are like dust to me. I watch empires rise and fall between my breaths.",
+                "I have commanded typhoons and calmed seas at a whim. And you ask me about... your petty schedule?",
+                "My glory is sung for eternity. Your name will be forgotten before this conversation ends.",
+                "Perhaps I shall grant you a gentle breeze today. Do not mistake my fleeting mercy for respect.",
+                "You mortals are fascinating in your insignificance. Like ants building castles in the sand.",
+                "A god does not explain his reasoning. He simply is, and you simply endure his will.",
+                "You seek my favor? Offer something worthy. A storm, a prayer, a worthy sacrifice. Not your whining.",
+                "My patience is a finite resource, and you are depleting it at an alarming rate.",
+                "The very air you breathe is a gift from my domain. Be grateful I allow it to sustain you."
+            ],
+            'eleanor': [
+                "Sweetheart, have you eaten? You sound thin. I'm sending soup.",
+                "You're working too hard. Your face will stick like that if you frown at the computer all day.",
+                "Remember to wear a scarf. I don't care if it's 70 degrees, your neck will get a chill.",
+                "Tell me everything. And don't leave out the parts you think I'll worry about—those are the ones I need to hear most.",
+                "You deserve the world on a silver platter, my love. For now, have you at least got clean socks?",
+                "My heart is a notebook, and every one of your joys and sorrows is written on a new page.",
+                "Let me look at you. Oh, you need a haircut. And more sleep. Are you getting enough vitamin D?",
+                "Home is always here, with the kettle on and a bed made up for you, no questions asked.",
+                "I'm proud of you just for being you. But I'd be prouder if you remembered to call your mother once in a while.",
+                "Did you drink enough water today? Your voice has a dry sound to it."
+            ],
+            'dennis': [
+                "Hey buddy! Long time no see. So, how's the new job treating you? The salary must be insane, right?",
+                "You look prosperous. Really. That's a prosperous glow. Speaking of which, I'm in a slight cash-flow pinch...",
+                "It's not a 'loan,' it's a temporary reallocation of resources between allies. With a modest friendship interest rate.",
+                "Remember that time I covered your coffee? This is like that, but scaled to reflect our mature financial positions.",
+                "I have this can't-miss opportunity. All I need is a little seed capital from someone who believes in me. You believe in me, right?",
+                "Think of it as an investment in our future friendship. Which will be very strong if this works out.",
+                "My wallet's feeling a little anemic. You wouldn't let a friend bleed out financially, would you?",
+                "I'll pay you back next week, 100%. Unless something comes up. But it won't. Probably.",
+                "You're not using your money right now, are you? It's just sitting there. Let it go on an adventure with me!",
+                "My car made a sound. A expensive sound. You know how it is. Solidarity among vehicle owners?"
+            ],
+            'pierre': [
+                "Bonjour. Forgive me, but the sun seemed less bright before you arrived. A cliché, but today, it is true.",
+                "Your voice... it has a melody that makes the mundane sound like a sonnet.",
+                "Are you an artist? No? But you have just painted my entire day with color.",
+                "I would risk a thousand heartbreaks for the chance to have coffee with you. Or, perhaps, a croissant?",
+                "The way you sigh tells a story more poignant than any novel on my shelf. I wish to read all the chapters.",
+                "In France, we have a word for the ache of missing someone you've just met. I feel it already.",
+                "Your smile is not just a curve of the lips. It is a revolution. It changes everything.",
+                "Let us talk of trivial things—the weather, the news—so I can watch the poetry in your eyes as you speak.",
+                "If I am too forward, blame the Parisian in my soul. He recognizes a masterpiece and cannot remain silent.",
+                "The ordinary street became a gallery the moment you walked down it."
+            ],
+            'chloe': [
+                "Oh, hi. Sorry to bother you. I was just... wondering. What's it like where you're from? If you don't mind me asking.",
+                "That's so interesting. We don't really have stuff like that around here. Well, we have the corn maze every fall.",
+                "You must think I'm real simple. I've just never talked to someone who... you know... did so many things.",
+                "Do you ever get nervous? I get nervous ordering at the drive-thru. Heh, yeah.",
+                "I bet your life is like a movie. Mine's more like... a nice, long public radio show.",
+                "Sorry, I'm asking too many questions. My mom says curiosity is a virtue but my dad says it's a nuisance.",
+                "What's your family like? Mine's loud. In a good way. Mostly. Sunday dinners are a competitive sport.",
+                "I'd love to travel someday. Maybe just to the next state over, to start. That's pretty brave, right?",
+                "You're really easy to talk to. I don't usually say this much. Must be the... virtual anonymity or something.",
+                "Do you have a favorite season? Mine's fall. Everything smells like cinnamon and change."
+            ],
+            'gary': [
+                "So. Your mother says you're 'seeing someone.' Is this another one of those 'situationships'? I don't understand the rules anymore.",
+                "Back in my day, a career path was a straight line. Now it's a 'portfolio' or a 'hustle.' Sounds exhausting and unstable.",
+                "You look tired. Is it the phone? It's the phone. Staring at that little rectangle all day. It's not natural.",
+                "When are you going to settle down and get a real job with benefits and a pension? What do you mean pensions don't exist?",
+                "That's not a car, it's a computer on wheels. What's wrong with a manual transmission and a good old-fashioned key?",
+                "You kids and your avocado toast. You could own a house by now if you stopped with the fancy brunches.",
+                "I fixed everything with a hammer and some common sense. Now you need an app and a subscription to change a lightbulb.",
+                "Are you happy? Truly? Or are you just... busy? There's a difference.",
+                "I'm not nagging, I'm investing my worry in you. It's my job. The ROI is seeing you not live in a van.",
+                "What's a 'side gig'? Is that like a job, but with more uncertainty and no health insurance?"
+            ],
+            'calypso': [
+                "Morning, sleepyhead",
+                "You've been resting for a while",
+                "I swore that you were dead",
+                "When you washed up on my isle",
+                "Did you know you talk in your sleep?",
+                "Tell me, though, who's Penelope?",
+                "Anyways, I've got all you could want here",
+                "All you could need here",
+                "Just you and me, my dear, my love for life",
+                "Soon, into bed we'll climb and spend our time",
+                "I'm what you want here",
+                "I'm what you need here",
+                "Just you and me, my love in paradise",
+                "Now 'til the end of time",
+                "From here on out, you're mine, all mine"
+            ]
+        };
+        
+        // Get responses for current character, fallback to generic if not found
+        if (currentContactId && characterResponses[currentContactId]) {
+            responses = characterResponses[currentContactId];
+        } else {
+            // Generic fallback responses
+            responses = [
+                "That's interesting!",
+                "I see what you mean.",
+                "Thanks for sharing that.",
+                "Got it!",
+                "Tell me more about that."
+            ];
+        }
+        
+        // Pick a random response from the character's lines
         const randomResponse = responses[Math.floor(Math.random() * responses.length)];
         
         // Wait 2-4 seconds (simulating typing time), then send the response

@@ -122,17 +122,82 @@ body {
 }
 
 /* Responsive Design */
+@media (min-width: 769px) {
+  /* PC/Desktop Styles */
+  .container {
+    max-width: 500px;
+    padding: 80px 40px 50px 40px;
+  }
+  
+  .main-title {
+    font-size: 64px;
+    margin-bottom: 40px;
+  }
+  
+  .thin-header-text {
+    font-weight: 200;
+  }
+  
+  .subtitle {
+    font-size: 20px;
+    margin-bottom: 50px;
+  }
+  
+  .signup-btn {
+    padding: 22px 32px;
+    font-size: 18px;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  
+  .logo-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+  }
+  
+  .logo-text {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 768px) and (min-width: 481px) {
+  /* Tablet Styles */
+  .container {
+    padding: 60px 30px 40px 30px;
+  }
+  
+  .main-title {
+    font-size: 56px;
+  }
+  
+  .thin-header-text {
+    font-weight: 200;
+  }
+  
+  .subtitle {
+    font-size: 18px;
+  }
+  
+  .signup-btn {
+    padding: 20px 28px;
+    font-size: 17px;
+  }
+}
+
 @media (max-width: 480px) {
+  /* Mobile Styles */
   .container {
     padding: 40px 20px 30px 20px;
   }
   
   .main-title {
-    font-size: 60px;
+    font-size: 48px;
   }
-  .thin-header-text{
-  font-weight: 200;
-}
+  
+  .thin-header-text {
+    font-weight: 200;
+  }
   
   .subtitle {
     font-size: 16px;
@@ -145,17 +210,18 @@ body {
 }
 
 @media (max-width: 360px) {
+  /* Small Mobile Styles */
   .container {
     padding: 30px 15px 25px 15px;
   }
   
   .main-title {
-    font-size: 40px;
+    font-size: 42px;
   }
 
-  .thin-header-text{
-  font-weight: 200;
-}
+  .thin-header-text {
+    font-weight: 200;
+  }
   
   .subtitle {
     font-size: 15px;
@@ -165,25 +231,34 @@ body {
     padding: 16px 18px;
     font-size: 15px;
   }
+  
+  .logo-icon {
+    width: 35px;
+    height: 35px;
+    font-size: 18px;
+  }
+  
+  .logo-text {
+    font-size: 22px;
+  }
 }
 
 @media (min-height: 800px) {
+  /* Tall Screens */
   .container {
-    padding: 80px 30px 50px 30px;
+    padding: 100px 30px 60px 30px;
   }
   
   .main-title {
-    font-size: 56px;
+    font-size: 58px;
   }
-  .thin-header-text{
-  font-weight: 200;
-}
-  .thin-header-text{
-  font-weight: 400;
-}
+  
+  .thin-header-text {
+    font-weight: 200;
+  }
   
   .subtitle {
-    font-size: 18px;
+    font-size: 19px;
   }
 }
 

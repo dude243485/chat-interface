@@ -559,15 +559,248 @@ Chat Messages Styles */
   background: #a8a8a8;
 }
 
-/* Responsive design */
-@media (max-width: 768px) {
+/* Responsive Design */
+@media (min-width: 769px) {
+  /* PC/Desktop Styles */
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #f0f2f5;
+    padding: 20px;
+  }
+  
+  .chat-app-container {
+    width: 500px;
+    height: 700px;
+    max-height: 90vh;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    background: white;
+  }
+  
+  header {
+    padding: 25px 30px;
+  }
+  
+  .profile-name-1 {
+    font-size: 20px;
+  }
+  
+  .status {
+    font-size: 15px;
+  }
+  
+  .profile-image {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .date-contain {
+    padding: 15px 30px;
+  }
+  
+  .date {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+  
+  .chat-messages {
+    flex: 1;
+    padding: 25px;
+    max-height: none;
+  }
+  
+  .message-bubble {
+    padding: 15px 20px;
+    font-size: 16px;
+  }
+  
+  footer {
+    padding: 20px 30px;
+  }
+  
+  #message-input {
+    padding: 18px 25px;
+    font-size: 17px;
+  }
+  
+  #send-button {
+    padding: 18px;
+  }
+  
+  .send-icon {
+    width: 22px;
+    height: 22px;
+  }
+  
+  .back-icon,
+  .menu-icon {
+    width: 26px;
+    height: 26px;
+  }
+}
+
+@media (max-width: 768px) and (min-width: 481px) {
+  /* Tablet Styles */
+  header {
+    padding: 20px 25px;
+  }
+  
+  .profile-name-1 {
+    font-size: 19px;
+  }
+  
+  .profile-image {
+    width: 55px;
+    height: 55px;
+  }
+  
+  .chat-messages {
+    padding: 20px;
+    max-height: calc(100vh - 160px);
+  }
+  
   .message-content {
-    max-width: 85%;
+    max-width: 80%;
+  }
+  
+  footer {
+    padding: 18px 25px;
+  }
+  
+  #message-input {
+    padding: 16px 22px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Mobile Styles */
+  body {
+    padding-bottom: 0;
+  }
+  
+  header {
+    padding: 15px 20px;
+  }
+  
+  .profile-name-1 {
+    font-size: 18px;
+  }
+  
+  .status {
+    font-size: 14px;
+  }
+  
+  .profile-image {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .date-contain {
+    padding: 10px 20px;
+  }
+  
+  .date {
+    font-size: 13px;
+    padding: 6px 12px;
   }
   
   .chat-messages {
     padding: 15px;
     max-height: calc(100vh - 140px);
+  }
+  
+  .message-content {
+    max-width: 85%;
+  }
+  
+  .message-bubble {
+    padding: 12px 16px;
+    font-size: 15px;
+  }
+  
+  .message-time {
+    font-size: 11px;
+  }
+  
+  footer {
+    padding: 15px 20px;
+  }
+  
+  #message-input {
+    padding: 15px 20px;
+    font-size: 16px;
+  }
+  
+  #send-button {
+    padding: 15px;
+  }
+  
+  .send-icon {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .back-icon,
+  .menu-icon,
+  .footer-icon {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+@media (max-width: 360px) {
+  /* Small Mobile Styles */
+  header {
+    padding: 12px 15px;
+  }
+  
+  .profile-name-1 {
+    font-size: 16px;
+  }
+  
+  .status {
+    font-size: 13px;
+  }
+  
+  .profile-image {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .chat-messages {
+    padding: 12px;
+  }
+  
+  .message-bubble {
+    padding: 10px 14px;
+    font-size: 14px;
+  }
+  
+  footer {
+    padding: 12px 15px;
+  }
+  
+  #message-input {
+    padding: 12px 16px;
+    font-size: 15px;
+  }
+  
+  #send-button {
+    padding: 12px;
+  }
+  
+  .back-icon,
+  .menu-icon,
+  .footer-icon {
+    width: 20px;
+    height: 20px;
   }
 }
 
@@ -1358,7 +1591,69 @@ body.dark-mode .wallpaper-label {
 }
 
 /* Responsive Design for Interface Modals */
+@media (min-width: 769px) {
+  /* PC/Desktop Modal Styles */
+  .menu-content,
+  .wallpaper-selector-content {
+    max-width: 450px;
+  }
+  
+  .menu-header,
+  .wallpaper-header {
+    padding: 25px;
+  }
+  
+  .menu-option {
+    padding: 18px 25px;
+  }
+  
+  .option-title {
+    font-size: 17px;
+  }
+  
+  .option-desc {
+    font-size: 14px;
+  }
+  
+  .wallpaper-grid {
+    padding: 25px;
+    gap: 20px;
+  }
+  
+  .wallpaper-item {
+    padding: 20px;
+  }
+  
+  .wallpaper-preview {
+    height: 100px;
+  }
+  
+  .wallpaper-label {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 768px) and (min-width: 481px) {
+  /* Tablet Modal Styles */
+  .menu-content,
+  .wallpaper-selector-content {
+    max-width: 400px;
+    margin: 30px;
+  }
+  
+  .menu-header,
+  .wallpaper-header {
+    padding: 20px;
+  }
+  
+  .wallpaper-grid {
+    padding: 20px;
+    gap: 18px;
+  }
+}
+
 @media (max-width: 480px) {
+  /* Mobile Modal Styles */
   .menu-content,
   .wallpaper-selector-content {
     margin: 20px;
@@ -1374,6 +1669,14 @@ body.dark-mode .wallpaper-label {
     padding: 12px 15px;
   }
   
+  .option-title {
+    font-size: 16px;
+  }
+  
+  .option-desc {
+    font-size: 13px;
+  }
+  
   .wallpaper-grid {
     padding: 15px;
     gap: 12px;
@@ -1385,5 +1688,36 @@ body.dark-mode .wallpaper-label {
   
   .wallpaper-preview {
     height: 70px;
+  }
+  
+  .wallpaper-label {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 360px) {
+  /* Small Mobile Modal Styles */
+  .menu-content,
+  .wallpaper-selector-content {
+    margin: 15px;
+    max-width: calc(100% - 30px);
+  }
+  
+  .menu-header,
+  .wallpaper-header {
+    padding: 12px;
+  }
+  
+  .menu-option {
+    padding: 10px 12px;
+  }
+  
+  .wallpaper-grid {
+    padding: 12px;
+    gap: 10px;
+  }
+  
+  .wallpaper-preview {
+    height: 60px;
   }
 }
