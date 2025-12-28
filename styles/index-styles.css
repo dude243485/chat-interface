@@ -75,7 +75,7 @@ body {
   flex-direction: column;
   justify-content: center;
   text-align: left;
-  padding: 40px 0;
+  padding: 20px 0;
 }
 
 .main-title {
@@ -188,7 +188,7 @@ body {
 @media (max-width: 480px) {
   /* Mobile Styles */
   .container {
-    padding: 40px 20px 30px 20px;
+    padding: 20px 20px 30px 20px;
   }
   
   .main-title {
@@ -212,7 +212,7 @@ body {
 @media (max-width: 360px) {
   /* Small Mobile Styles */
   .container {
-    padding: 30px 15px 25px 15px;
+    padding: 20px 15px 25px 15px;
   }
   
   .main-title {
