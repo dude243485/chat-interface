@@ -1,23 +1,216 @@
-
+/* Import Poppins font from Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
+/* Set box-sizing to border-box for all elements */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
-
-body {
-  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+/* Reset and base styles */
+* {
   margin: 0;
   padding: 0;
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+}
+
+body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(135deg, #2c1810 0%, #1a1a2e 50%, #16213e 100%);
+  min-height: 100vh;
+  color: white;
+  overflow-x: hidden;
 }
 
+/* Container */
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 60px 30px 40px 30px;
+  max-width: 400px;
+  margin: 0 auto;
+}
 
-* {
-  font-family: inherit;
+/* Logo Section */
+.logo-section {
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.logo-icon {
+  width: 40px;
+  height: 40px;
+  background: white;
+  color: #2c1810;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.logo-text {
+  font-size: 24px;
+  font-weight: 600;
+  color: white;
+}
+
+/* Main Content */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+  padding: 40px 0;
+}
+
+.main-title {
+  font-size: 52px;
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 30px;
+  color: white;
+}
+
+.subtitle {
+  font-size: 17px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+}
+
+/* Action Section */
+.action-section {
+  flex-shrink: 0;
+  padding-top: 20px;
+}
+
+/* Sign up button */
+.signup-btn {
+  display: block;
+  width: 100%;
+  padding: 20px 24px;
+  background: white;
+  color: #2c1810;
+  text-decoration: none;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 17px;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
+}
+
+.signup-btn:hover {
+  background: rgba(255, 255, 255, 0.95);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  .container {
+    padding: 40px 20px 30px 20px;
+  }
+  
+  .main-title {
+    font-size: 60px;
+  }
+  .thin-header-text{
+  font-weight: 200;
+}
+  
+  .subtitle {
+    font-size: 16px;
+  }
+  
+  .signup-btn {
+    padding: 18px 20px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 360px) {
+  .container {
+    padding: 30px 15px 25px 15px;
+  }
+  
+  .main-title {
+    font-size: 40px;
+  }
+
+  .thin-header-text{
+  font-weight: 200;
+}
+  
+  .subtitle {
+    font-size: 15px;
+  }
+  
+  .signup-btn {
+    padding: 16px 18px;
+    font-size: 15px;
+  }
+}
+
+@media (min-height: 800px) {
+  .container {
+    padding: 80px 30px 50px 30px;
+  }
+  
+  .main-title {
+    font-size: 56px;
+  }
+  .thin-header-text{
+  font-weight: 200;
+}
+  .thin-header-text{
+  font-weight: 400;
+}
+  
+  .subtitle {
+    font-size: 18px;
+  }
+}
+
+/* Animation for page load */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.container > * {
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.logo-section {
+  animation-delay: 0.1s;
+}
+
+.main-content {
+  animation-delay: 0.2s;
+}
+
+.action-section {
+  animation-delay: 0.3s;
 }

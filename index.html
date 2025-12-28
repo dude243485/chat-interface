@@ -1,37 +1,59 @@
 <!DOCTYPE html>
-    <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Real-time Chat app</title>
-            <link rel="stylesheet" href="styles/index-styles.css">
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-        </head>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbox - Connect friends easily & quickly</title>
+    <link rel="stylesheet" href="styles/index-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
 
-        <body>
-            <header>
-                <div>
-                    <img src = "" alt = "logo image" class = "logo icon" />
-                    <h2>Chatbox</h2>
-                </div>
-            </header>
+<body>
+    <div class="container">
+        <!-- Logo Section -->
+        <header class="logo-section">
+            <div class="logo-container">
+                <div class="logo-icon">C</div>
+                <span class="logo-text">Chatbox</span>
+            </div>
+        </header>
 
-            <main>
-                <h1>
-                    <span class = "light-text">Connect friends</span>
-                    <span>easily & quickly</span>
-                </h1>
-                <p>Our chat app is the perfect way to stay connected with friends and family this holiday season.</p>
-            </main>
-            <section>
+        <!-- Main Content -->
+        <main class="main-content">
+            <h1 class="main-title">
+                <span class = "thin-header-text">Connect</span><br>
+                <span class = "thin-header-text">friends</span><br>
+                easily &<br>
+                quickly
+            </h1>
+            <p class="subtitle">
+                Our chat app is the perfect way to stay<br>
+                connected with friends and family.
+            </p>
+        </main>
 
-                <a class = "lets-go-button" href="pages/interface.html">
-                    Get Started!
-                </a>
-            </section>
-            <footer>
-                <a href = "">Read our <span class = "t&c">Terms and Conditions</span></a>
+        <!-- Action Section -->
+        <section class="action-section">
+            <a href="pages/chat.html" class="signup-btn" id="getStartedBtn">
+                Get Started
+            </a>
+        </section>
+    </div>
 
-            </footer>
-        </body>
-    </html>
+    <script>
+        // Clear local storage for fresh start
+        document.addEventListener('DOMContentLoaded', function() {
+            // Clear all chat-related local storage
+            localStorage.removeItem('chatContacts');
+            localStorage.removeItem('chatHistory');
+            localStorage.removeItem('chatMessages');
+            localStorage.removeItem('currentChatContact');
+            
+            // Optional: Clear all local storage for complete fresh start
+            // localStorage.clear();
+            
+            console.log('Local storage cleared for fresh start');
+        });
+    </script>
+</body>
+</html>
