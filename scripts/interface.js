@@ -17,46 +17,52 @@
  */
 
 // Wait for the DOM to be fully loaded before executing any code
-document.addEventListener('DOMContentLoaded', function() {
-    
+document.addEventListener('DOMContentLoaded', function () {
+
     // ========================================
     // DOM ELEMENT REFERENCES
     // ========================================
     // Get references to all the HTML elements we'll be working with
-    
+
     const backButton = document.getElementById('back_button');           // Back arrow button in header
     const messageInput = document.getElementById('message-input');       // Text input field for typing messages
     const sendButton = document.getElementById('send-button');           // Send button (green circle with arrow)
     const chatMessages = document.getElementById('chat-messages');       // Container that holds all chat messages
     const emptyChat = document.getElementById('empty-chat');             // "No messages yet" placeholder
     const attachButton = document.querySelector('footer button:first-child'); // Paperclip attachment button
-    
+
     // ========================================
     // STORAGE CONFIGURATION
     // ========================================
     // Local storage key for legacy message storage (kept for compatibility)
     const CHAT_STORAGE_KEY = 'chatMessages';
-    
+
     // ========================================
     // INITIALIZATION
     // ========================================
     // Initialize the chat interface when page loads
-    
+
     initializeChat();        // Load any existing messages from storage
     loadCurrentContact();    // Load the selected contact's information and chat history
     applyWallpaperSettings(); // Apply saved wallpaper settings
     applyDarkModeSettings(); // Apply saved dark mode settings
-    
+
+    // Check if embedded in iframe
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('embedded') === 'true') {
+        document.body.classList.add('is-embedded');
+    }
+
     // ========================================
     // NAVIGATION FUNCTIONALITY
     // ========================================
-    
+
     /**
      * BACK BUTTON - Returns user to chat list page
      * When clicked, navigates back to chat.html where user can see all conversations
      */
     if (backButton) {
-        backButton.addEventListener('click', function() {
+        backButton.addEventListener('click', function () {
             window.location.href = 'chat.html';  // Go back to chat list page
         });
     }
@@ -67,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
      */
     const menuButton = document.getElementById('menu_button');
     if (menuButton) {
-        menuButton.addEventListener('click', function() {
+        menuButton.addEventListener('click', function () {
             showInterfaceMenu();
         });
     }
@@ -150,7 +156,7 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
 
         document.body.appendChild(menuModal);
-        
+
         // Show menu with animation
         setTimeout(() => {
             menuModal.classList.add('active');
@@ -161,7 +167,7 @@ document.addEventListener('DOMContentLoaded', function() {
      * CLOSE INTERFACE MENU
      * Closes the interface menu modal
      */
-    window.closeInterfaceMenu = function() {
+    window.closeInterfaceMenu = function () {
         const menuModal = document.querySelector('.interface-menu-modal');
         if (menuModal) {
             menuModal.classList.remove('active');
@@ -177,7 +183,7 @@ document.addEventListener('DOMContentLoaded', function() {
      * CLEAR CURRENT CHAT
      * Clears the chat history for the current contact only
      */
-    window.clearCurrentChat = function() {
+    window.clearCurrentChat = function () {
         const currentContactId = localStorage.getItem('currentChatContact');
         if (!currentContactId) {
             alert('No active chat to clear.');
@@ -194,7 +200,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Get current contact info
                 const contacts = JSON.parse(localStorage.getItem('chatContacts') || '[]');
                 const contact = contacts.find(c => c.id === currentContactId);
-                
+
                 // Clear chat history for this contact
                 const allHistory = localStorage.getItem('chatHistory');
                 if (allHistory) {
@@ -219,7 +225,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 // Close menu and show success
                 closeInterfaceMenu();
-                
+
                 setTimeout(() => {
                     alert('Chat cleared successfully!');
                 }, 300);
@@ -235,9 +241,9 @@ document.addEventListener('DOMContentLoaded', function() {
      * OPEN WALLPAPER SELECTOR
      * Opens the wallpaper selection modal for the chat interface
      */
-    window.openWallpaperSelector = function() {
+    window.openWallpaperSelector = function () {
         closeInterfaceMenu();
-        
+
         // Create wallpaper selector modal
         const wallpaperModal = document.createElement('div');
         wallpaperModal.className = 'wallpaper-selector-modal';
@@ -273,10 +279,10 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
 
         document.body.appendChild(wallpaperModal);
-        
+
         // Load current wallpaper selection
         loadCurrentInterfaceWallpaper();
-        
+
         // Show modal
         setTimeout(() => {
             wallpaperModal.classList.add('active');
@@ -287,7 +293,7 @@ document.addEventListener('DOMContentLoaded', function() {
      * CLOSE WALLPAPER SELECTOR
      * Closes the wallpaper selection modal
      */
-    window.closeWallpaperSelector = function() {
+    window.closeWallpaperSelector = function () {
         const wallpaperModal = document.querySelector('.wallpaper-selector-modal');
         if (wallpaperModal) {
             wallpaperModal.classList.remove('active');
@@ -306,7 +312,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function loadCurrentInterfaceWallpaper() {
         const currentWallpaper = localStorage.getItem('interfaceWallpaper') || 'default';
         const wallpaperItems = document.querySelectorAll('.wallpaper-item');
-        
+
         wallpaperItems.forEach(item => {
             item.classList.remove('selected');
             if (item.dataset.wallpaper === currentWallpaper) {
@@ -319,16 +325,16 @@ document.addEventListener('DOMContentLoaded', function() {
      * SELECT INTERFACE WALLPAPER
      * Applies the selected wallpaper to the chat interface
      */
-    window.selectInterfaceWallpaper = function(wallpaper) {
+    window.selectInterfaceWallpaper = function (wallpaper) {
         // Save wallpaper preference
         localStorage.setItem('interfaceWallpaper', wallpaper);
-        
+
         // Apply wallpaper immediately
         applyWallpaperSettings();
-        
+
         // Update selection UI
         loadCurrentInterfaceWallpaper();
-        
+
         // Show feedback and close
         setTimeout(() => {
             closeWallpaperSelector();
@@ -339,12 +345,12 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     // Placeholder functions for other menu options
-    window.showChatInfo = function() {
+    window.showChatInfo = function () {
         closeInterfaceMenu();
         const currentContactId = localStorage.getItem('currentChatContact');
         const contacts = JSON.parse(localStorage.getItem('chatContacts') || '[]');
         const contact = contacts.find(c => c.id === currentContactId);
-        
+
         if (contact) {
             alert(`Chat Info:\n\nName: ${contact.name}\nStatus: ${contact.isOnline ? 'Online' : 'Offline'}\nMuted: ${contact.isMuted ? 'Yes' : 'No'}`);
         } else {
@@ -352,12 +358,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 
-    window.toggleChatMute = function() {
+    window.toggleChatMute = function () {
         closeInterfaceMenu();
         const currentContactId = localStorage.getItem('currentChatContact');
         const contacts = JSON.parse(localStorage.getItem('chatContacts') || '[]');
         const contact = contacts.find(c => c.id === currentContactId);
-        
+
         if (contact) {
             contact.isMuted = !contact.isMuted;
             localStorage.setItem('chatContacts', JSON.stringify(contacts));
@@ -365,7 +371,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 
-    window.openChatSettings = function() {
+    window.openChatSettings = function () {
         closeInterfaceMenu();
         alert('Settings feature coming soon!\n\nFor now, you can access settings from the chat list page.');
     };
@@ -373,7 +379,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // ========================================
     // MESSAGE SENDING FUNCTIONALITY
     // ========================================
-    
+
     /**
      * SEND BUTTON & ENTER KEY SETUP
      * Allows users to send messages by clicking send button or pressing Enter
@@ -381,15 +387,15 @@ document.addEventListener('DOMContentLoaded', function() {
     if (sendButton && messageInput) {
         // Send message when send button is clicked
         sendButton.addEventListener('click', sendMessage);
-        
+
         // Send message when Enter key is pressed (but not Shift+Enter for new lines)
-        messageInput.addEventListener('keypress', function(e) {
+        messageInput.addEventListener('keypress', function (e) {
             if (e.key === 'Enter' && !e.shiftKey) {
                 e.preventDefault();  // Prevent default Enter behavior (new line)
                 sendMessage();       // Send the message instead
             }
         });
-        
+
         // Automatically focus on the input field so user can start typing immediately
         messageInput.focus();
     }
@@ -400,7 +406,7 @@ document.addEventListener('DOMContentLoaded', function() {
      */
     function sendMessage() {
         const messageText = messageInput.value.trim();  // Get text and remove whitespace
-        
+
         if (messageText) {  // Only send if there's actual content
             // Create message object with all necessary data
             const message = {
@@ -409,13 +415,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 type: 'text',                              // Message type (text, file, etc.)
                 sender: 'user',                            // Who sent it (user = you, contact = them)
                 timestamp: new Date().toISOString(),       // Full timestamp for sorting/storage
-                time: new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) // Display time (e.g., "2:30 PM")
+                time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) // Display time (e.g., "2:30 PM")
             };
-            
+
             addMessageToChat(message);              // Display the message in the chat UI
             saveMessageToContactStorage(message);   // Save to local storage for this specific contact
             messageInput.value = '';                // Clear the input field
-            
+
             // Simulate a reply from the contact after 1-3 seconds (realistic delay)
             setTimeout(() => {
                 simulateReceivedMessage();
@@ -426,7 +432,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // ========================================
     // AUTO-REPLY SIMULATION SYSTEM
     // ========================================
-    
+
     /**
      * SIMULATE RECEIVED MESSAGE
      * Creates realistic auto-replies to make the chat feel interactive
@@ -435,11 +441,11 @@ document.addEventListener('DOMContentLoaded', function() {
     function simulateReceivedMessage() {
         // Show the typing indicator (3 bouncing dots like WhatsApp)
         showTypingIndicator();
-        
+
         // Get current contact to determine their personality
         const currentContactId = localStorage.getItem('currentChatContact');
         let responses = [];
-        
+
         // Character-specific response lines
         const characterResponses = {
             'aeolus': [
@@ -532,7 +538,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 "From here on out, you're mine, all mine"
             ]
         };
-        
+
         // Get responses for current character, fallback to generic if not found
         if (currentContactId && characterResponses[currentContactId]) {
             responses = characterResponses[currentContactId];
@@ -546,14 +552,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 "Tell me more about that."
             ];
         }
-        
+
         // Pick a random response from the character's lines
         const randomResponse = responses[Math.floor(Math.random() * responses.length)];
-        
+
         // Wait 2-4 seconds (simulating typing time), then send the response
         setTimeout(() => {
             hideTypingIndicator();  // Remove the typing dots
-            
+
             // Create the received message object
             const receivedMessage = {
                 id: generateMessageId(),
@@ -561,9 +567,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 type: 'text',
                 sender: 'contact',                          // This message is from the contact, not the user
                 timestamp: new Date().toISOString(),
-                time: new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})
+                time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
             };
-            
+
             addMessageToChat(receivedMessage);              // Display in chat
             saveMessageToContactStorage(receivedMessage);   // Save to storage
         }, 2000 + Math.random() * 2000);  // 2-4 second delay
@@ -572,20 +578,20 @@ document.addEventListener('DOMContentLoaded', function() {
     // ========================================
     // TYPING INDICATOR (WhatsApp-style 3 dots)
     // ========================================
-    
+
     /**
      * SHOW TYPING INDICATOR
      * Displays the animated 3-dot typing indicator when contact is "typing"
      */
     function showTypingIndicator() {
         hideEmptyChat();  // Hide "no messages" placeholder if visible
-        
+
         // Remove any existing typing indicator to prevent duplicates
         const existingIndicator = document.querySelector('.typing-indicator');
         if (existingIndicator) {
             existingIndicator.remove();
         }
-        
+
         // Create the typing indicator HTML with 3 animated dots
         const typingDiv = document.createElement('div');
         typingDiv.className = 'message received typing-message';
@@ -600,7 +606,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             </div>
         `;
-        
+
         chatMessages.appendChild(typingDiv);  // Add to chat
         scrollToBottom();                     // Scroll to show the indicator
     }
@@ -619,19 +625,19 @@ document.addEventListener('DOMContentLoaded', function() {
     // ========================================
     // MESSAGE DISPLAY FUNCTIONS
     // ========================================
-    
+
     /**
      * ADD MESSAGE TO CHAT UI
      * Takes a message object and creates the HTML to display it in the chat
      */
     function addMessageToChat(message) {
         hideEmptyChat();  // Hide "no messages" placeholder
-        
+
         // Create the message container div
         const messageDiv = document.createElement('div');
         messageDiv.className = `message ${message.sender === 'user' ? 'sent' : 'received'}`;  // Style based on sender
         messageDiv.setAttribute('data-message-id', message.id);  // Store message ID for reference
-        
+
         // Only handle text messages here (file messages are handled separately)
         if (message.type === 'text') {
             messageDiv.innerHTML = `
@@ -643,7 +649,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             `;
         }
-        
+
         chatMessages.appendChild(messageDiv);  // Add to chat container
         scrollToBottom();                      // Scroll to show new message
     }
@@ -651,7 +657,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // ========================================
     // CHAT INITIALIZATION & CONTACT LOADING
     // ========================================
-    
+
     /**
      * INITIALIZE CHAT
      * Loads any existing messages from local storage when page first loads
@@ -674,22 +680,22 @@ document.addEventListener('DOMContentLoaded', function() {
     function loadCurrentContact() {
         // Get the ID of the currently selected contact (set when user clicked on them in chat list)
         const currentContactId = localStorage.getItem('currentChatContact');
-        
+
         if (currentContactId) {
             // Get all contacts from storage
             const contacts = JSON.parse(localStorage.getItem('chatContacts') || '[]');
             const contact = contacts.find(c => c.id === currentContactId);
-            
+
             if (contact) {
                 // Update the header with this contact's information
                 const profileName = document.querySelector('.profile-name-1');    // Contact name in header
                 const profileImage = document.querySelector('.profile-image');    // Profile picture
                 const status = document.querySelector('.status');                 // Online status text
-                
+
                 if (profileName) profileName.textContent = contact.name;
                 if (profileImage) profileImage.src = contact.profileImage;
                 if (status) status.textContent = contact.isOnline ? 'Active now' : 'Last seen recently';
-                
+
                 // Load this contact's chat history
                 loadChatHistoryForContact(currentContactId);
             }
@@ -705,7 +711,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (allHistory) {
             const history = JSON.parse(allHistory);
             const contactHistory = history[contactId] || [];  // Get messages for this contact only
-            
+
             if (contactHistory.length > 0) {
                 hideEmptyChat();
                 // Display each message in chronological order
@@ -719,7 +725,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // ========================================
     // LOCAL STORAGE MANAGEMENT
     // ========================================
-    
+
     /**
      * SAVE MESSAGE TO CONTACT-SPECIFIC STORAGE
      * Saves messages organized by contact ID for proper chat separation
@@ -730,16 +736,16 @@ document.addEventListener('DOMContentLoaded', function() {
             // Get existing chat history structure
             const allHistory = localStorage.getItem('chatHistory');
             const history = allHistory ? JSON.parse(allHistory) : {};
-            
+
             // Create array for this contact if it doesn't exist
             if (!history[currentContactId]) {
                 history[currentContactId] = [];
             }
-            
+
             // Add the new message to this contact's history
             history[currentContactId].push(message);
             localStorage.setItem('chatHistory', JSON.stringify(history));
-            
+
             // Update the contact's "last message" in the chat list
             updateContactLastMessage(currentContactId, message);
         }
@@ -752,7 +758,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function updateContactLastMessage(contactId, message) {
         const contacts = JSON.parse(localStorage.getItem('chatContacts') || '[]');
         const contact = contacts.find(c => c.id === contactId);
-        
+
         if (contact) {
             // Update the last message preview and timestamp
             contact.lastMessage = message.text || 'File attachment';  // Show "File attachment" for non-text messages
@@ -783,7 +789,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // ========================================
     // UI HELPER FUNCTIONS
     // ========================================
-    
+
     /**
      * HIDE EMPTY CHAT MESSAGE
      * Hides the "No messages yet" placeholder when there are messages
@@ -833,7 +839,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // ========================================
     // FILE ATTACHMENT SYSTEM
     // ========================================
-    
+
     /**
      * FILE ATTACHMENT SETUP
      * Creates hidden file input and handles attachment button clicks
@@ -847,12 +853,12 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.appendChild(fileInput);
 
         // When attachment button is clicked, trigger the hidden file input
-        attachButton.addEventListener('click', function() {
+        attachButton.addEventListener('click', function () {
             fileInput.click();  // Opens the file selection dialog
         });
 
         // When user selects a file, handle the attachment
-        fileInput.addEventListener('change', function(e) {
+        fileInput.addEventListener('change', function (e) {
             const file = e.target.files[0];  // Get the selected file
             if (file) {
                 handleFileAttachment(file);  // Process the file
@@ -876,21 +882,21 @@ document.addEventListener('DOMContentLoaded', function() {
             type: 'file',                                   // Mark as file message
             sender: 'user',
             timestamp: new Date().toISOString(),
-            time: new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})
+            time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
         };
 
         // Create the message container
         const messageDiv = document.createElement('div');
         messageDiv.className = 'message sent file-message';
         messageDiv.setAttribute('data-message-id', fileMessage.id);
-        
+
         const fileSize = formatFileSize(file.size);  // Convert bytes to readable format
         const fileName = file.name;
         const fileType = file.type;
 
         // Create different HTML based on file type
         let fileContent = '';
-        
+
         // IMAGE FILES - Show thumbnail with click to open modal
         if (fileType.startsWith('image/')) {
             const imageUrl = URL.createObjectURL(file);  // Create temporary URL for the file
@@ -903,7 +909,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                 </div>
             `;
-        } 
+        }
         // VIDEO FILES - Show video player with click to open modal
         else if (fileType.startsWith('video/')) {
             const videoUrl = URL.createObjectURL(file);
@@ -919,7 +925,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                 </div>
             `;
-        } 
+        }
         // AUDIO FILES - Show audio player with controls
         else if (fileType.startsWith('audio/')) {
             const audioUrl = URL.createObjectURL(file);
@@ -935,7 +941,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                 </div>
             `;
-        } 
+        }
         // OTHER FILES - Show generic file icon with download button
         else {
             fileContent = `
@@ -988,12 +994,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // ========================================
     // GLOBAL UTILITY FUNCTIONS
     // ========================================
-    
+
     /**
      * DOWNLOAD FILE FUNCTION (Global)
      * Allows users to download attached files
      */
-    window.downloadFile = function(fileName, url) {
+    window.downloadFile = function (fileName, url) {
         const a = document.createElement('a');
         a.href = url;
         a.download = fileName;
@@ -1006,7 +1012,7 @@ document.addEventListener('DOMContentLoaded', function() {
      * CLEAR CHAT FUNCTION (Global)
      * Utility function accessible from browser console for debugging
      */
-    window.clearChat = function() {
+    window.clearChat = function () {
         if (confirm('Are you sure you want to clear all chat messages?')) {
             clearChatHistory();
         }
@@ -1015,7 +1021,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // ========================================
     // MEDIA MODAL SYSTEM (Full-screen image/video viewer)
     // ========================================
-    
+
     // Create the modal when page loads
     createMediaModal();
 
@@ -1049,13 +1055,13 @@ document.addEventListener('DOMContentLoaded', function() {
      * OPEN MEDIA MODAL (Global)
      * Opens full-screen viewer for images and videos
      */
-    window.openMediaModal = function(url, type, fileName) {
+    window.openMediaModal = function (url, type, fileName) {
         const modal = document.getElementById('mediaModal');
         const container = document.getElementById('modalMediaContainer');
         const fileNameElement = document.getElementById('modalFileName');
-        
+
         fileNameElement.textContent = fileName || 'Media';
-        
+
         // Display content based on media type
         if (type === 'image') {
             container.innerHTML = `<img src="${url}" alt="${fileName}" class="modal-image">`;
@@ -1067,7 +1073,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 </video>
             `;
         }
-        
+
         modal.style.display = 'flex';           // Show the modal
         document.body.style.overflow = 'hidden'; // Prevent background scrolling
     };
@@ -1076,10 +1082,10 @@ document.addEventListener('DOMContentLoaded', function() {
      * CLOSE MEDIA MODAL (Global)
      * Closes the full-screen media viewer
      */
-    window.closeMediaModal = function() {
+    window.closeMediaModal = function () {
         const modal = document.getElementById('mediaModal');
         const container = document.getElementById('modalMediaContainer');
-        
+
         modal.style.display = 'none';           // Hide the modal
         document.body.style.overflow = 'auto';  // Restore background scrolling
         container.innerHTML = '';               // Clear the content
@@ -1088,7 +1094,7 @@ document.addEventListener('DOMContentLoaded', function() {
     /**
      * KEYBOARD SHORTCUT - Close modal with Escape key
      */
-    document.addEventListener('keydown', function(e) {
+    document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape') {
             closeMediaModal();
         }
@@ -1105,11 +1111,11 @@ document.addEventListener('DOMContentLoaded', function() {
     function applyWallpaperSettings() {
         const wallpaper = localStorage.getItem('interfaceWallpaper') || 'default';
         const chatMessages = document.getElementById('chat-messages');
-        
+
         if (chatMessages) {
             // Remove existing wallpaper classes
             chatMessages.classList.remove('wallpaper-default', 'wallpaper-dark', 'wallpaper-blue', 'wallpaper-green');
-            
+
             // Apply selected wallpaper
             chatMessages.classList.add(`wallpaper-${wallpaper}`);
         }
@@ -1121,7 +1127,7 @@ document.addEventListener('DOMContentLoaded', function() {
      */
     function applyDarkModeSettings() {
         const isDarkMode = localStorage.getItem('darkMode') === 'true';
-        
+
         if (isDarkMode) {
             document.body.classList.add('dark-mode');
             document.documentElement.classList.add('dark-mode');

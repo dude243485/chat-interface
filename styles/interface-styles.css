@@ -175,22 +175,25 @@ header {
   display: block;
 }
 
-.date{
-    display: inline-block;
-    background-color: #dddddd;
-    color:#6c757d;
-    text-align: center;
-    border-radius: 4px;
-    padding: 2px 6px;
-    margin: 10px auto;
-    font-size: 13px;
-    font-weight: 500;
+.date {
+  display: inline-block;
+  background-color: #dddddd;
+  color: #6c757d;
+  text-align: center;
+  border-radius: 4px;
+  padding: 2px 6px;
+  margin: 10px auto;
+  font-size: 13px;
+  font-weight: 500;
 }
-.date-contain{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}/* F
+
+.date-contain {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* F
 ooter Styles */
 footer {
   display: flex;
@@ -297,7 +300,9 @@ body {
 
 .chat-messages {
   margin-bottom: 20px;
-}/* File Atta
+}
+
+/* File Atta
 chment Styles */
 .file-message {
   margin: 10px 0;
@@ -424,12 +429,14 @@ chment Styles */
   .file-attachment {
     max-width: 250px;
   }
-  
+
   .image-attachment .attached-image,
   .video-attachment .attached-video {
     max-width: 230px;
   }
-}/* 
+}
+
+/* 
 Chat Messages Styles */
 .chat-messages {
   flex: 1;
@@ -534,6 +541,7 @@ Chat Messages Styles */
     opacity: 0;
     transform: translateY(10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -561,6 +569,7 @@ Chat Messages Styles */
 
 /* Responsive Design */
 @media (min-width: 769px) {
+
   /* PC/Desktop Styles */
   body {
     display: flex;
@@ -570,7 +579,7 @@ Chat Messages Styles */
     background: #f0f2f5;
     padding: 20px;
   }
-  
+
   .chat-app-container {
     width: 500px;
     height: 700px;
@@ -582,62 +591,66 @@ Chat Messages Styles */
     flex-direction: column;
     background: white;
   }
-  
+
   header {
-    padding: 25px 30px;
+    padding: 10px 30px;
   }
-  
+
   .profile-name-1 {
-    font-size: 20px;
+    font-size: 18px;
   }
-  
+
   .status {
-    font-size: 15px;
+    font-size: 13px;
   }
-  
+
   .profile-image {
     width: 60px;
     height: 60px;
   }
-  
+
   .date-contain {
     padding: 15px 30px;
   }
-  
+
   .date {
     font-size: 14px;
     padding: 8px 16px;
   }
-  
+
   .chat-messages {
     flex: 1;
-    padding: 25px;
+    padding: 25px 25px 80px 25px;
     max-height: none;
   }
-  
+
+  .message {
+    margin-bottom: 10px;
+  }
+
   .message-bubble {
-    padding: 15px 20px;
-    font-size: 16px;
+    padding: 10px 16px;
+    font-size: 14px;
   }
-  
+
   footer {
-    padding: 20px 30px;
+    padding: 10px 30px;
   }
-  
+
   #message-input {
-    padding: 18px 25px;
-    font-size: 17px;
+    padding: 12px 20px;
+    font-size: 15px;
   }
-  
+
   #send-button {
     padding: 18px;
   }
-  
+
   .send-icon {
     width: 22px;
     height: 22px;
   }
-  
+
   .back-icon,
   .menu-icon {
     width: 26px;
@@ -646,33 +659,34 @@ Chat Messages Styles */
 }
 
 @media (max-width: 768px) and (min-width: 481px) {
+
   /* Tablet Styles */
   header {
     padding: 20px 25px;
   }
-  
+
   .profile-name-1 {
     font-size: 19px;
   }
-  
+
   .profile-image {
     width: 55px;
     height: 55px;
   }
-  
+
   .chat-messages {
     padding: 20px;
     max-height: calc(100vh - 160px);
   }
-  
+
   .message-content {
     max-width: 80%;
   }
-  
+
   footer {
     padding: 18px 25px;
   }
-  
+
   #message-input {
     padding: 16px 22px;
     font-size: 16px;
@@ -680,127 +694,160 @@ Chat Messages Styles */
 }
 
 @media (max-width: 480px) {
+
   /* Mobile Styles */
   body {
     padding-bottom: 0;
   }
-  
+
   header {
     padding: 15px 20px;
   }
-  
+
   .profile-name-1 {
     font-size: 18px;
   }
-  
+
   .status {
     font-size: 14px;
   }
-  
+
   .profile-image {
     width: 50px;
     height: 50px;
   }
-  
+
   .date-contain {
     padding: 10px 20px;
   }
-  
+
   .date {
     font-size: 13px;
     padding: 6px 12px;
   }
-  
+
   .chat-messages {
     padding: 15px;
     max-height: calc(100vh - 140px);
   }
-  
+
   .message-content {
     max-width: 85%;
   }
-  
+
   .message-bubble {
     padding: 12px 16px;
     font-size: 15px;
   }
-  
+
   .message-time {
     font-size: 11px;
   }
-  
+
   footer {
     padding: 15px 20px;
   }
-  
+
   #message-input {
     padding: 15px 20px;
     font-size: 16px;
   }
-  
+
   #send-button {
     padding: 15px;
   }
-  
+
   .send-icon {
     width: 20px;
     height: 20px;
   }
-  
+
   .back-icon,
   .menu-icon,
   .footer-icon {
     width: 22px;
     height: 22px;
   }
-}
 
-@media (max-width: 360px) {
-  /* Small Mobile Styles */
-  header {
-    padding: 12px 15px;
+  /* Embedded Mode Styles */
+  body.is-embedded {
+    background-color: #f0f2f5;
+    /* Match WhatsApp desktop background */
+    height: 100vh;
+    overflow: hidden;
+    padding: 0;
   }
-  
-  .profile-name-1 {
-    font-size: 16px;
+
+  body.is-embedded .chat-app-container {
+    width: 100%;
+    height: 100%;
+    max-height: none;
+    border-radius: 0;
+    box-shadow: none;
+    margin: 0;
   }
-  
-  .status {
-    font-size: 13px;
+
+  body.is-embedded .back-button {
+    display: none !important;
   }
-  
-  .profile-image {
-    width: 45px;
-    height: 45px;
+
+  body.is-embedded header {
+    padding-left: 20px;
+    border-radius: 0;
   }
-  
-  .chat-messages {
-    padding: 12px;
+
+  body.is-embedded footer {
+    border-radius: 0;
   }
-  
-  .message-bubble {
-    padding: 10px 14px;
-    font-size: 14px;
-  }
-  
-  footer {
-    padding: 12px 15px;
-  }
-  
-  #message-input {
-    padding: 12px 16px;
-    font-size: 15px;
-  }
-  
-  #send-button {
-    padding: 12px;
-  }
-  
-  .back-icon,
-  .menu-icon,
-  .footer-icon {
-    width: 20px;
-    height: 20px;
+
+  @media (max-width: 360px) {
+
+    /* Small Mobile Styles */
+    header {
+      padding: 12px 15px;
+    }
+
+    .profile-name-1 {
+      font-size: 16px;
+    }
+
+    .status {
+      font-size: 13px;
+    }
+
+    .profile-image {
+      width: 45px;
+      height: 45px;
+    }
+
+    .chat-messages {
+      padding: 12px;
+    }
+
+    .message-bubble {
+      padding: 10px 14px;
+      font-size: 14px;
+    }
+
+    footer {
+      padding: 12px 15px;
+    }
+
+    #message-input {
+      padding: 12px 16px;
+      font-size: 15px;
+    }
+
+    #send-button {
+      padding: 12px;
+    }
+
+    .back-icon,
+    .menu-icon,
+    .footer-icon {
+      width: 20px;
+      height: 20px;
+    }
   }
 }
 
@@ -862,10 +909,14 @@ Chat Messages Styles */
 }
 
 @keyframes typingBounce {
-  0%, 80%, 100% {
+
+  0%,
+  80%,
+  100% {
     transform: scale(0.8);
     opacity: 0.5;
   }
+
   40% {
     transform: scale(1.2);
     opacity: 1;
@@ -874,10 +925,14 @@ Chat Messages Styles */
 
 /* Alternative typing animation - more WhatsApp-like */
 @keyframes typingPulse {
-  0%, 60%, 100% {
+
+  0%,
+  60%,
+  100% {
     transform: scale(1);
     opacity: 0.4;
   }
+
   30% {
     transform: scale(1.3);
     opacity: 1;
@@ -891,7 +946,9 @@ Chat Messages Styles */
   background: #9e9e9e;
   border-radius: 50%;
   animation: typingPulse 1.4s infinite ease-in-out;
-}/* M
+}
+
+/* M
 edia Modal Styles */
 .media-modal {
   display: none;
@@ -993,6 +1050,7 @@ edia Modal Styles */
     transform: scale(0.7);
     opacity: 0;
   }
+
   to {
     transform: scale(1);
     opacity: 1;
@@ -1049,16 +1107,16 @@ edia Modal Styles */
     max-height: 95vh;
     margin: 10px;
   }
-  
+
   .modal-image,
   .modal-video {
     max-height: 60vh;
   }
-  
+
   .modal-header {
     padding: 15px;
   }
-  
+
   .modal-close {
     top: 10px;
     right: 10px;
@@ -1066,6 +1124,7 @@ edia Modal Styles */
     height: 35px;
   }
 }
+
 .chat-messages.wallpaper-default {
   background: #f8f9fa;
 }
@@ -1250,7 +1309,9 @@ body.dark-mode .chat-messages.wallpaper-blue .message.received .message-bubble {
 body.dark-mode .chat-messages.wallpaper-green .message.received .message-bubble {
   background: rgba(255, 255, 255, 0.15);
   color: #ffffff;
-}/*
+}
+
+/*
  Interface Menu Modal Styles */
 .interface-menu-modal {
   display: none;
@@ -1572,6 +1633,7 @@ body.dark-mode .wallpaper-label {
     transform: translateY(50px);
     opacity: 0;
   }
+
   to {
     transform: translateY(0);
     opacity: 1;
@@ -1583,6 +1645,7 @@ body.dark-mode .wallpaper-label {
     transform: translateY(30px);
     opacity: 0;
   }
+
   to {
     transform: translateY(0);
     opacity: 1;
@@ -1591,60 +1654,62 @@ body.dark-mode .wallpaper-label {
 
 /* Responsive Design for Interface Modals */
 @media (min-width: 769px) {
+
   /* PC/Desktop Modal Styles */
   .menu-content,
   .wallpaper-selector-content {
     max-width: 450px;
   }
-  
+
   .menu-header,
   .wallpaper-header {
     padding: 25px;
   }
-  
+
   .menu-option {
     padding: 18px 25px;
   }
-  
+
   .option-title {
     font-size: 17px;
   }
-  
+
   .option-desc {
     font-size: 14px;
   }
-  
+
   .wallpaper-grid {
     padding: 25px;
     gap: 20px;
   }
-  
+
   .wallpaper-item {
     padding: 20px;
   }
-  
+
   .wallpaper-preview {
     height: 100px;
   }
-  
+
   .wallpaper-label {
     font-size: 16px;
   }
 }
 
 @media (max-width: 768px) and (min-width: 481px) {
+
   /* Tablet Modal Styles */
   .menu-content,
   .wallpaper-selector-content {
     max-width: 400px;
     margin: 30px;
   }
-  
+
   .menu-header,
   .wallpaper-header {
     padding: 20px;
   }
-  
+
   .wallpaper-grid {
     padding: 20px;
     gap: 18px;
@@ -1652,71 +1717,103 @@ body.dark-mode .wallpaper-label {
 }
 
 @media (max-width: 480px) {
+
   /* Mobile Modal Styles */
   .menu-content,
   .wallpaper-selector-content {
     margin: 20px;
     max-width: calc(100% - 40px);
   }
-  
+
   .menu-header,
   .wallpaper-header {
     padding: 15px;
   }
-  
+
   .menu-option {
     padding: 12px 15px;
   }
-  
+
   .option-title {
     font-size: 16px;
   }
-  
+
   .option-desc {
     font-size: 13px;
   }
-  
+
   .wallpaper-grid {
     padding: 15px;
     gap: 12px;
   }
-  
+
   .wallpaper-item {
     padding: 12px;
   }
-  
+
   .wallpaper-preview {
     height: 70px;
   }
-  
+
   .wallpaper-label {
     font-size: 14px;
   }
 }
 
 @media (max-width: 360px) {
+
   /* Small Mobile Modal Styles */
   .menu-content,
   .wallpaper-selector-content {
     margin: 15px;
     max-width: calc(100% - 30px);
   }
-  
+
   .menu-header,
   .wallpaper-header {
     padding: 12px;
   }
-  
+
   .menu-option {
     padding: 10px 12px;
   }
-  
+
   .wallpaper-grid {
     padding: 12px;
     gap: 10px;
   }
-  
+
   .wallpaper-preview {
     height: 60px;
   }
+}
+
+/* Embedded Mode Styles (For Desktop Iframe) */
+body.is-embedded {
+  background-color: transparent;
+  height: 100vh;
+  overflow: hidden;
+  padding: 0;
+}
+
+body.is-embedded .chat-app-container {
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  border-radius: 0;
+  box-shadow: none;
+  margin: 0;
+}
+
+body.is-embedded .back-button {
+  display: none !important;
+}
+
+body.is-embedded header {
+  padding-left: 20px;
+  border-radius: 0;
+}
+
+body.is-embedded footer {
+  border-radius: 0;
 }

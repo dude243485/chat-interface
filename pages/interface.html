@@ -1,54 +1,57 @@
 <!DOCTYPE html>
-    <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Real-time Chat app</title>
-            <link rel="stylesheet" href="../styles/interface-styles.css">
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-        </head>
-        <body>
-            <div class="chat-app-container">
-                <header>
-                    <button class = "back-button" id = "back_button">
-                        <img  src = "../assets/left.png" alt = "back arrow" class = "icon back-icon" />
-                    </button>
-                    <div class = "profile-contain">
-                        <p>
-                            <img class = "profile-image" src = "../assets/my headshot.png" alt = "profile image" />
-                            <span class="online"></span>
-                        </p>
-                        <div class = "name-contain">
-                            <h3 class = "profile-name-1">Ude Daniel</h3>
-                            <p class = "status">Active now</p>
-                        </div>
-                    </div>
-                    <div class = "action-icon-contain">
-                        <button class = "menu-button" id = "menu_button">
-                            <img class = "icon menu-icon" src = "../assets/dots.png" alt = "menu"/>
-                        </button>
-                    </div>
-                </header>
-                <div class = "date-contain">
-                    <h3 class = "date" id = "date">Today</h3>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-time Chat app</title>
+    <link rel="stylesheet" href="../styles/interface-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="chat-app-container">
+        <header>
+            <button class="back-button" id="back_button">
+                <img src="../assets/left.png" alt="back arrow" class="icon back-icon" />
+            </button>
+            <div class="profile-contain">
+                <p>
+                    <img class="profile-image" src="../assets/my headshot.png" alt="profile image" />
+                    <span class="online"></span>
+                </p>
+                <div class="name-contain">
+                    <h3 class="profile-name-1">Ude Daniel</h3>
+                    <p class="status">Active now</p>
                 </div>
-                <section class="chat-messages" id="chat-messages">
-                    <div class="empty-chat" id="empty-chat">
-                        <p>No messages yet. Start chatting!</p>
-                    </div>
-                </section>
-                <footer>
-                    <button>
-                        <img class = "icon footer-icon" src = "../assets/attach-file.png" alt = "attach file icon"/>
-                    </button>
-                    <div class="chat-input-container">
-                        <input type="text" id="message-input" placeholder="Type your message here..." autocomplete="off">
-                    </div>
-                    <button id="send-button">
-                        <img class = "send-icon icon" alt = "send icon" src = "../assets/send.png" />
-                    </button>
-                </footer>
             </div>
-        </body>
-        <script src="../scripts/interface.js"></script>
-    </html>
+            <div class="action-icon-contain">
+                <button class="menu-button" id="menu_button">
+                    <img class="icon menu-icon" src="../assets/dots.png" alt="menu" />
+                </button>
+            </div>
+        </header>
+        <section class="chat-messages" id="chat-messages">
+            <div class="date-contain">
+                <h3 class="date" id="date">Today</h3>
+            </div>
+            <div class="empty-chat" id="empty-chat">
+                <p>No messages yet. Start chatting!</p>
+            </div>
+        </section>
+        <footer>
+            <button>
+                <img class="icon footer-icon" src="../assets/attach-file.png" alt="attach file icon" />
+            </button>
+            <div class="chat-input-container">
+                <input type="text" id="message-input" placeholder="Type your message here..." autocomplete="off">
+            </div>
+            <button id="send-button">
+                <img class="send-icon icon" alt="send icon" src="../assets/send.png" />
+            </button>
+        </footer>
+    </div>
+</body>
+<script src="../scripts/interface.js"></script>
+
+</html>

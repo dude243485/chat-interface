@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,10 +22,11 @@
         <!-- Main Content -->
         <main class="main-content">
             <h1 class="main-title">
-                <span class = "thin-header-text">Connect</span><br>
-                <span class = "thin-header-text">friends</span><br>
-                easily &<br>
-                quickly
+                <span class="title-group">
+                    <span class="thin-header-text">Connect</span>
+                    <span class="thin-header-text">friends</span>
+                </span>
+                <span class="title-group">easily & quickly</span>
             </h1>
             <p class="subtitle">
                 Our chat app is the perfect way to stay<br>
@@ -42,18 +44,16 @@
 
     <script>
         // Clear local storage for fresh start
-        document.addEventListener('DOMContentLoaded', function() {
-            // Clear all chat-related local storage
+        document.addEventListener('DOMContentLoaded', function () {
+
             localStorage.removeItem('chatContacts');
             localStorage.removeItem('chatHistory');
             localStorage.removeItem('chatMessages');
-            localStorage.removeItem('currentChatContact');
-            
-            // Optional: Clear all local storage for complete fresh start
-            // localStorage.clear();
-            
+            localStorage.removeItem('currentChatContact')
+
             console.log('Local storage cleared for fresh start');
         });
     </script>
 </body>
+
 </html>
