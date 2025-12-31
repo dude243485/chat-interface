@@ -1065,8 +1065,7 @@ edia Modal Styles */
     width: 35px;
     height: 35px;
   }
-}/
-* Wallpaper Styles for Chat Interface */
+}
 .chat-messages.wallpaper-default {
   background: #f8f9fa;
 }
