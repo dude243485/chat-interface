@@ -727,7 +727,7 @@ Chat Messages Styles */
   }
 
   .chat-messages {
-    padding: 15px;
+    padding: 15px 15px 100px 15px;
     max-height: calc(100vh - 140px);
   }
 
