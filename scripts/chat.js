@@ -371,8 +371,29 @@ document.addEventListener('DOMContentLoaded', function() {
         // Store current contact ID for the interface
         localStorage.setItem('currentChatContact', contactId);
         
-        // Navigate to interface
-        window.location.href = 'interface.html';
+        // Check for desktop view (>= 1024px)
+        if (window.innerWidth >= 1024) {
+             const chatFrame = document.getElementById('chat-frame');
+             const placeholder = document.getElementById('emptyStatePlaceholder');
+             
+             if (chatFrame && placeholder) {
+                 // Add embedded=true param
+                 chatFrame.src = 'interface.html?embedded=true';
+                 placeholder.style.display = 'none';
+                 chatFrame.style.display = 'block';
+                 
+                 // Highlight active chat item
+                 document.querySelectorAll('.chat-item').forEach(item => {
+                     item.classList.remove('active-chat');
+                     if (item.dataset.contactId === contactId) {
+                         item.classList.add('active-chat');
+                     }
+                 });
+             }
+        } else {
+            // Navigate to interface on mobile
+            window.location.href = 'interface.html';
+        }
     }
 
     function goBack() {

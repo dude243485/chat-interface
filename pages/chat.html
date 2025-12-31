@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,48 +8,64 @@
     <link rel="stylesheet" href="../styles/chat-styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
-    <div class="chat-container">
-        <!-- Header with search -->
-        <header class="chat-header">
-            <div class="header-top">
-                <button class="back-btn" id="backBtn">
-                    <img src="../assets/left.png" alt="Back" class="back-icon">
-                </button>
-                <h1 class="page-title">Messages</h1>
-                <button class="search-toggle-btn" id="searchToggle">
-                    <img src="../assets/search.png" alt="Search" class="search-icon">
-                </button>
-            </div>
-            <div class="search-container" id="searchContainer">
-                <input type="text" id="searchInput" placeholder="Search conversations..." class="search-input">
-            </div>
-        </header>
+    <div class="chat-app-wrapper">
+        <div class="chat-container">
+            <!-- Header with search -->
+            <header class="chat-header">
+                <div class="header-top">
+                    <!-- Back button hidden on desktop via CSS -->
+                    <button class="back-btn" id="backBtn">
+                        <img src="../assets/left.png" alt="Back" class="back-icon">
+                    </button>
+                    <h1 class="page-title">Messages</h1>
+                    <button class="search-toggle-btn" id="searchToggle">
+                        <img src="../assets/search.png" alt="Search" class="search-icon">
+                    </button>
+                </div>
+                <div class="search-container" id="searchContainer">
+                    <input type="text" id="searchInput" placeholder="Search conversations..." class="search-input">
+                </div>
+            </header>
 
-        <!-- Chat List -->
-        <main class="chat-list" id="chatList">
-            <!-- Chat items will be dynamically generated -->
-        </main>
+            <!-- Chat List -->
+            <main class="chat-list" id="chatList">
+                <!-- Chat items will be dynamically generated -->
+            </main>
 
-        <!-- Bottom Navigation -->
-        <nav class="bottom-nav">
-            <button class="nav-btn active" data-tab="messages">
-                <img src="../assets/bubble-chat.png" alt="Messages" class="nav-icon">
-                <span>Messages</span>
-            </button>
-            <button class="nav-btn" data-tab="calls">
-                <img src="../assets/phone-call.png" alt="Calls" class="nav-icon">
-                <span>Calls</span>
-            </button>
-            <button class="nav-btn" data-tab="contacts">
-                <img src="../assets/user.png" alt="Contacts" class="nav-icon">
-                <span>Contacts</span>
-            </button>
-            <button class="nav-btn" data-tab="settings">
-                <img src="../assets/setting.png" alt="Settings" class="nav-icon">
-                <span>Settings</span>
-            </button>
-        </nav>
+            <!-- Bottom Navigation -->
+            <nav class="bottom-nav">
+                <button class="nav-btn active" data-tab="messages">
+                    <img src="../assets/bubble-chat.png" alt="Messages" class="nav-icon">
+                    <span>Messages</span>
+                </button>
+                <button class="nav-btn" data-tab="calls">
+                    <img src="../assets/phone-call.png" alt="Calls" class="nav-icon">
+                    <span>Calls</span>
+                </button>
+                <button class="nav-btn" data-tab="contacts">
+                    <img src="../assets/user.png" alt="Contacts" class="nav-icon">
+                    <span>Contacts</span>
+                </button>
+                <button class="nav-btn" data-tab="settings">
+                    <img src="../assets/setting.png" alt="Settings" class="nav-icon">
+                    <span>Settings</span>
+                </button>
+            </nav>
+        </div>
+
+        <!-- Right Panel (Desktop Only) -->
+        <div class="chat-frame-container desktop-only">
+            <iframe id="chat-frame" name="chat-frame" src="about:blank"></iframe>
+            <div class="empty-chat-placeholder" id="emptyStatePlaceholder">
+                <div class="empty-chat-content">
+                    <img src="../assets/bubble-chat.png" alt="Chat" class="empty-chat-icon">
+                    <h2>Chatbox for Desktop</h2>
+                    <p>Select a conversation to start messaging.</p>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Swipe Action Overlay -->
@@ -187,4 +204,5 @@
 
     <script src="../scripts/chat.js"></script>
 </body>
+
 </html>
