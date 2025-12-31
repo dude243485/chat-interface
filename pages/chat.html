@@ -12,10 +12,8 @@
 <body>
     <div class="chat-app-wrapper">
         <div class="chat-container">
-            <!-- Header with search -->
             <header class="chat-header">
                 <div class="header-top">
-                    <!-- Back button hidden on desktop via CSS -->
                     <button class="back-btn" id="backBtn">
                         <img src="../assets/left.png" alt="Back" class="back-icon">
                     </button>
@@ -29,12 +27,9 @@
                 </div>
             </header>
 
-            <!-- Chat List -->
             <main class="chat-list" id="chatList">
-                <!-- Chat items will be dynamically generated -->
             </main>
 
-            <!-- Bottom Navigation -->
             <nav class="bottom-nav">
                 <button class="nav-btn active" data-tab="messages">
                     <img src="../assets/bubble-chat.png" alt="Messages" class="nav-icon">
@@ -55,7 +50,6 @@
             </nav>
         </div>
 
-        <!-- Right Panel (Desktop Only) -->
         <div class="chat-frame-container desktop-only">
             <iframe id="chat-frame" name="chat-frame" src="about:blank"></iframe>
             <div class="empty-chat-placeholder" id="emptyStatePlaceholder">
@@ -68,7 +62,6 @@
         </div>
     </div>
 
-    <!-- Swipe Action Overlay -->
     <div class="swipe-actions" id="swipeActions">
         <button class="action-btn mute-btn" id="muteBtn">
             <img src="../assets/disabled.png" alt="Mute" class="action-icon">
@@ -78,11 +71,9 @@
         </button>
     </div>
 
-    <!-- Settings Modal -->
     <div class="settings-modal" id="settingsModal">
         <div class="modal-overlay" onclick="closeSettingsModal()">
             <div class="settings-content" onclick="event.stopPropagation()">
-                <!-- Settings Header -->
                 <div class="settings-header">
                     <button class="settings-back-btn" onclick="closeSettingsModal()">
                         <img src="../assets/left.png" alt="Back" class="settings-back-icon">
@@ -90,7 +81,6 @@
                     <h2 class="settings-title">Settings</h2>
                 </div>
 
-                <!-- User Profile Section -->
                 <div class="settings-profile">
                     <img src="../assets/my headshot.png" alt="Profile" class="settings-profile-image">
                     <div class="settings-profile-info">
@@ -102,9 +92,7 @@
                     </button>
                 </div>
 
-                <!-- Settings Options -->
                 <div class="settings-options">
-                    <!-- Dark Mode -->
                     <div class="settings-option" id="darkModeOption">
                         <div class="option-icon">
                             <img src="../assets/setting.png" alt="Dark Mode" class="option-icon-img">
@@ -121,7 +109,6 @@
                         </div>
                     </div>
 
-                    <!-- Change Wallpaper -->
                     <div class="settings-option" id="wallpaperOption">
                         <div class="option-icon">
                             <img src="../assets/setting.png" alt="Wallpaper" class="option-icon-img">
@@ -135,7 +122,6 @@
                         </div>
                     </div>
 
-                    <!-- Clear Chat History -->
                     <div class="settings-option" id="clearHistoryOption">
                         <div class="option-icon">
                             <img src="../assets/bin.png" alt="Clear History" class="option-icon-img">
@@ -149,7 +135,6 @@
                         </div>
                     </div>
 
-                    <!-- Online Status -->
                     <div class="settings-option" id="onlineStatusOption">
                         <div class="option-icon">
                             <img src="../assets/user.png" alt="Online Status" class="option-icon-img">
@@ -170,7 +155,6 @@
         </div>
     </div>
 
-    <!-- Wallpaper Selection Modal -->
     <div class="wallpaper-modal" id="wallpaperModal">
         <div class="modal-overlay" onclick="closeWallpaperModal()">
             <div class="wallpaper-content" onclick="event.stopPropagation()">

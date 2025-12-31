@@ -1,27 +1,9 @@
-/**
- * ========================================
- * CHAT INTERFACE JAVASCRIPT - INTERFACE.JS
- * ========================================
- * 
- * This file handles all the functionality for the chat interface page (interface.html)
- * including messaging, file attachments, media modals, and local storage management.
- * 
- * MAIN FEATURES:
- * - Send and receive text messages
- * - File attachment support (images, videos, audio, documents)
- * - WhatsApp-style typing indicator with 3 dots animation
- * - Media modal for viewing images/videos in full screen
- * - Local storage integration for persistent chat history
- * - Contact-specific chat management
- * - Auto-reply simulation for realistic chat experience
- */
+// Chat Interface Javascript - Handles messaging, attachments, and settings
 
 // Wait for the DOM to be fully loaded before executing any code
 document.addEventListener('DOMContentLoaded', function () {
 
-    // ========================================
-    // DOM ELEMENT REFERENCES
-    // ========================================
+    // DOM Element References
     // Get references to all the HTML elements we'll be working with
 
     const backButton = document.getElementById('back_button');           // Back arrow button in header
@@ -31,15 +13,11 @@ document.addEventListener('DOMContentLoaded', function () {
     const emptyChat = document.getElementById('empty-chat');             // "No messages yet" placeholder
     const attachButton = document.querySelector('footer button:first-child'); // Paperclip attachment button
 
-    // ========================================
-    // STORAGE CONFIGURATION
-    // ========================================
+    // Storage Configuration
     // Local storage key for legacy message storage (kept for compatibility)
     const CHAT_STORAGE_KEY = 'chatMessages';
 
-    // ========================================
-    // INITIALIZATION
-    // ========================================
+    // Initialization
     // Initialize the chat interface when page loads
 
     initializeChat();        // Load any existing messages from storage
@@ -53,24 +31,16 @@ document.addEventListener('DOMContentLoaded', function () {
         document.body.classList.add('is-embedded');
     }
 
-    // ========================================
-    // NAVIGATION FUNCTIONALITY
-    // ========================================
+    // Navigation Functionality
 
-    /**
-     * BACK BUTTON - Returns user to chat list page
-     * When clicked, navigates back to chat.html where user can see all conversations
-     */
+    // Back Button Handler
     if (backButton) {
         backButton.addEventListener('click', function () {
             window.location.href = 'chat.html';  // Go back to chat list page
         });
     }
 
-    /**
-     * MENU BUTTON - Shows menu options
-     * When clicked, shows available menu options for the chat interface
-     */
+    // Menu Button Handler
     const menuButton = document.getElementById('menu_button');
     if (menuButton) {
         menuButton.addEventListener('click', function () {
@@ -78,10 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    /**
-     * SHOW INTERFACE MENU
-     * Creates and displays a menu modal with chat-specific options
-     */
+    // Show Interface Menu
     function showInterfaceMenu() {
         // Remove existing menu if any
         const existingMenu = document.querySelector('.interface-menu-modal');
@@ -163,10 +130,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }, 10);
     }
 
-    /**
-     * CLOSE INTERFACE MENU
-     * Closes the interface menu modal
-     */
+    // Close Interface Menu
     window.closeInterfaceMenu = function () {
         const menuModal = document.querySelector('.interface-menu-modal');
         if (menuModal) {
@@ -179,10 +143,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     };
 
-    /**
-     * CLEAR CURRENT CHAT
-     * Clears the chat history for the current contact only
-     */
+    // Clear Current Chat
     window.clearCurrentChat = function () {
         const currentContactId = localStorage.getItem('currentChatContact');
         if (!currentContactId) {
@@ -237,10 +198,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     };
 
-    /**
-     * OPEN WALLPAPER SELECTOR
-     * Opens the wallpaper selection modal for the chat interface
-     */
+    // Open Wallpaper Selector
     window.openWallpaperSelector = function () {
         closeInterfaceMenu();
 
@@ -289,10 +247,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }, 10);
     };
 
-    /**
-     * CLOSE WALLPAPER SELECTOR
-     * Closes the wallpaper selection modal
-     */
+    // Close Wallpaper Selector
     window.closeWallpaperSelector = function () {
         const wallpaperModal = document.querySelector('.wallpaper-selector-modal');
         if (wallpaperModal) {
@@ -305,10 +260,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     };
 
-    /**
-     * LOAD CURRENT INTERFACE WALLPAPER
-     * Highlights the currently selected wallpaper
-     */
+    // Load Current Interface Wallpaper
     function loadCurrentInterfaceWallpaper() {
         const currentWallpaper = localStorage.getItem('interfaceWallpaper') || 'default';
         const wallpaperItems = document.querySelectorAll('.wallpaper-item');
@@ -321,10 +273,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    /**
-     * SELECT INTERFACE WALLPAPER
-     * Applies the selected wallpaper to the chat interface
-     */
+    // Select Interface Wallpaper
     window.selectInterfaceWallpaper = function (wallpaper) {
         // Save wallpaper preference
         localStorage.setItem('interfaceWallpaper', wallpaper);
@@ -376,14 +325,9 @@ document.addEventListener('DOMContentLoaded', function () {
         alert('Settings feature coming soon!\n\nFor now, you can access settings from the chat list page.');
     };
 
-    // ========================================
-    // MESSAGE SENDING FUNCTIONALITY
-    // ========================================
+    // Message Sending Functionality
 
-    /**
-     * SEND BUTTON & ENTER KEY SETUP
-     * Allows users to send messages by clicking send button or pressing Enter
-     */
+    // Send Button & Enter Key Setup
     if (sendButton && messageInput) {
         // Send message when send button is clicked
         sendButton.addEventListener('click', sendMessage);
@@ -400,10 +344,7 @@ document.addEventListener('DOMContentLoaded', function () {
         messageInput.focus();
     }
 
-    /**
-     * SEND MESSAGE FUNCTION
-     * Creates a message object and adds it to the chat, then triggers auto-reply
-     */
+    // Send Message Function
     function sendMessage() {
         const messageText = messageInput.value.trim();  // Get text and remove whitespace
 
@@ -429,15 +370,9 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // ========================================
-    // AUTO-REPLY SIMULATION SYSTEM
-    // ========================================
+    // Auto-Reply Simulation System
 
-    /**
-     * SIMULATE RECEIVED MESSAGE
-     * Creates realistic auto-replies to make the chat feel interactive
-     * Shows typing indicator first, then sends a random response based on character
-     */
+    // Simulate Received Message
     function simulateReceivedMessage() {
         // Show the typing indicator (3 bouncing dots like WhatsApp)
         showTypingIndicator();
@@ -575,14 +510,9 @@ document.addEventListener('DOMContentLoaded', function () {
         }, 2000 + Math.random() * 2000);  // 2-4 second delay
     }
 
-    // ========================================
-    // TYPING INDICATOR (WhatsApp-style 3 dots)
-    // ========================================
+    // Typing Indicator
 
-    /**
-     * SHOW TYPING INDICATOR
-     * Displays the animated 3-dot typing indicator when contact is "typing"
-     */
+    // Show Typing Indicator
     function showTypingIndicator() {
         hideEmptyChat();  // Hide "no messages" placeholder if visible
 
@@ -611,10 +541,7 @@ document.addEventListener('DOMContentLoaded', function () {
         scrollToBottom();                     // Scroll to show the indicator
     }
 
-    /**
-     * HIDE TYPING INDICATOR
-     * Removes the typing indicator when contact finishes "typing"
-     */
+    // Hide Typing Indicator
     function hideTypingIndicator() {
         const typingIndicator = document.querySelector('.typing-message');
         if (typingIndicator) {
@@ -622,14 +549,9 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // ========================================
-    // MESSAGE DISPLAY FUNCTIONS
-    // ========================================
+    // Message Display Functions
 
-    /**
-     * ADD MESSAGE TO CHAT UI
-     * Takes a message object and creates the HTML to display it in the chat
-     */
+    // Add Message to Chat UI
     function addMessageToChat(message) {
         hideEmptyChat();  // Hide "no messages" placeholder
 
@@ -654,14 +576,9 @@ document.addEventListener('DOMContentLoaded', function () {
         scrollToBottom();                      // Scroll to show new message
     }
 
-    // ========================================
-    // CHAT INITIALIZATION & CONTACT LOADING
-    // ========================================
+    // Chat Initialization & Contact Loading
 
-    /**
-     * INITIALIZE CHAT
-     * Loads any existing messages from local storage when page first loads
-     */
+    // Initialize Chat
     function initializeChat() {
         const savedMessages = getMessagesFromStorage();
         if (savedMessages.length > 0) {
@@ -672,11 +589,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    /**
-     * LOAD CURRENT CONTACT
-     * Gets the selected contact's info from storage and updates the header
-     * Also loads the chat history specific to this contact
-     */
+    // Load Current Contact
     function loadCurrentContact() {
         // Get the ID of the currently selected contact (set when user clicked on them in chat list)
         const currentContactId = localStorage.getItem('currentChatContact');
@@ -702,10 +615,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    /**
-     * LOAD CHAT HISTORY FOR SPECIFIC CONTACT
-     * Retrieves and displays all previous messages with this contact
-     */
+    // Load Chat History for Contact
     function loadChatHistoryForContact(contactId) {
         const allHistory = localStorage.getItem('chatHistory');
         if (allHistory) {
@@ -722,14 +632,9 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // ========================================
-    // LOCAL STORAGE MANAGEMENT
-    // ========================================
+    // Local Storage Management
 
-    /**
-     * SAVE MESSAGE TO CONTACT-SPECIFIC STORAGE
-     * Saves messages organized by contact ID for proper chat separation
-     */
+    // Save Message to Contact Storage
     function saveMessageToContactStorage(message) {
         const currentContactId = localStorage.getItem('currentChatContact');
         if (currentContactId) {
@@ -751,10 +656,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    /**
-     * UPDATE CONTACT'S LAST MESSAGE
-     * Updates the preview text shown in the chat list for this contact
-     */
+    // Update Contact's Last Message
     function updateContactLastMessage(contactId, message) {
         const contacts = JSON.parse(localStorage.getItem('chatContacts') || '[]');
         const contact = contacts.find(c => c.id === contactId);
@@ -767,33 +669,22 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    /**
-     * GET MESSAGES FROM STORAGE (Legacy function)
-     * Retrieves messages from the old storage format for compatibility
-     */
+    // Get Messages from Storage
     function getMessagesFromStorage() {
         const messages = localStorage.getItem(CHAT_STORAGE_KEY);
         return messages ? JSON.parse(messages) : [];
     }
 
-    /**
-     * CLEAR CHAT HISTORY
-     * Removes all messages and shows empty state
-     */
+    // Clear Chat History
     function clearChatHistory() {
         localStorage.removeItem(CHAT_STORAGE_KEY);
         chatMessages.innerHTML = '';
         showEmptyChat();
     }
 
-    // ========================================
-    // UI HELPER FUNCTIONS
-    // ========================================
+    // UI Helper Functions
 
-    /**
-     * HIDE EMPTY CHAT MESSAGE
-     * Hides the "No messages yet" placeholder when there are messages
-     */
+    // Hide Empty Chat
     function hideEmptyChat() {
         if (emptyChat) {
             emptyChat.style.display = 'none';

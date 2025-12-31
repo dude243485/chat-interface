@@ -193,8 +193,7 @@ header {
   align-items: center;
 }
 
-/* F
-ooter Styles */
+/* Footer Styles */
 footer {
   display: flex;
   align-items: center;
@@ -302,8 +301,7 @@ body {
   margin-bottom: 20px;
 }
 
-/* File Atta
-chment Styles */
+/* File Attachment Styles */
 .file-message {
   margin: 10px 0;
 }
@@ -436,8 +434,7 @@ chment Styles */
   }
 }
 
-/* 
-Chat Messages Styles */
+/* Chat Messages Styles */
 .chat-messages {
   flex: 1;
   overflow-y: auto;

@@ -1,7 +1,7 @@
-/* Import Poppins font from Google Fonts */
+/* Import Poppins font */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
-/* CSS Reset - Remove all default styles */
+/* CSS Reset */
 * {
   margin: 0;
   padding: 0;
@@ -31,7 +31,12 @@ main {
   display: block;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-size: inherit;
   font-weight: inherit;
 }
@@ -192,7 +197,8 @@ template {
 }
 
 /* Remove list styles */
-ul, ol {
+ul,
+ol {
   list-style: none;
 }
 
@@ -203,7 +209,10 @@ table {
 }
 
 /* Remove form element styling */
-input, button, textarea, select {
+input,
+button,
+textarea,
+select {
   background: none;
   border: none;
   outline: none;

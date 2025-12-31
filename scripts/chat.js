@@ -1,5 +1,5 @@
 // Chat List Management with Local Storage
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // DOM Elements
     const backBtn = document.getElementById('backBtn');
     const searchToggle = document.getElementById('searchToggle');
@@ -116,13 +116,13 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!getContacts().length) {
             saveContacts(defaultContacts);
         }
-        
+
         // Initialize chat history structure
         initializeChatHistory();
-        
+
         // Initialize dark mode on page load
         initializeDarkMode();
-        
+
         // Render chat list
         renderChatList();
     }
@@ -172,9 +172,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function renderChatList(filteredContacts = null) {
         const contacts = filteredContacts || getContacts().filter(contact => !contact.isBlocked);
-        
+
         chatList.innerHTML = '';
-        
+
         if (contacts.length === 0) {
             chatList.innerHTML = `
                 <div class="empty-state">
@@ -254,10 +254,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
         function handleTouchMove(e) {
             if (!isDragging) return;
-            
+
             currentX = e.touches[0].clientX;
             const deltaX = currentX - startX;
-            
+
             if (deltaX < -50) { // Swipe left threshold
                 e.preventDefault();
                 const translateX = Math.max(deltaX, -120);
@@ -269,10 +269,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
         function handleMouseMove(e) {
             if (!isDragging) return;
-            
+
             currentX = e.clientX;
             const deltaX = currentX - startX;
-            
+
             if (deltaX < -50) {
                 const translateX = Math.max(deltaX, -120);
                 element.style.transform = `translateX(${translateX}px)`;
@@ -291,12 +291,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
         function handleEnd() {
             if (!isDragging) return;
-            
+
             isDragging = false;
             element.classList.remove('swiping');
-            
+
             const deltaX = currentX - startX;
-            
+
             if (deltaX < -80) {
                 // Show swipe actions
                 element.style.transform = 'translateX(-120px)';
@@ -312,7 +312,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function showSwipeActions(element) {
         currentSwipeItem = element;
         swipeActions.classList.add('active');
-        
+
         // Position swipe actions
         const rect = element.getBoundingClientRect();
         swipeActions.style.top = `${rect.top}px`;
@@ -330,11 +330,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function handleMute() {
         if (!currentSwipeItem) return;
-        
+
         const contactId = currentSwipeItem.dataset.contactId;
         const contacts = getContacts();
         const contact = contacts.find(c => c.id === contactId);
-        
+
         if (contact) {
             contact.isMuted = !contact.isMuted;
             saveContacts(contacts);
@@ -345,15 +345,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function handleDelete() {
         if (!currentSwipeItem) return;
-        
+
         const contactId = currentSwipeItem.dataset.contactId;
-        
+
         if (confirm('Are you sure you want to delete this conversation?')) {
             // Remove from contacts
             let contacts = getContacts();
             contacts = contacts.filter(c => c.id !== contactId);
             saveContacts(contacts);
-            
+
             // Remove chat history
             const allHistory = localStorage.getItem(CHAT_HISTORY_STORAGE_KEY);
             if (allHistory) {
@@ -361,7 +361,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 delete history[contactId];
                 localStorage.setItem(CHAT_HISTORY_STORAGE_KEY, JSON.stringify(history));
             }
-            
+
             renderChatList();
             hideSwipeActions();
         }
@@ -370,26 +370,26 @@ document.addEventListener('DOMContentLoaded', function() {
     function openChat(contactId) {
         // Store current contact ID for the interface
         localStorage.setItem('currentChatContact', contactId);
-        
+
         // Check for desktop view (>= 1024px)
         if (window.innerWidth >= 1024) {
-             const chatFrame = document.getElementById('chat-frame');
-             const placeholder = document.getElementById('emptyStatePlaceholder');
-             
-             if (chatFrame && placeholder) {
-                 // Add embedded=true param
-                 chatFrame.src = 'interface.html?embedded=true';
-                 placeholder.style.display = 'none';
-                 chatFrame.style.display = 'block';
-                 
-                 // Highlight active chat item
-                 document.querySelectorAll('.chat-item').forEach(item => {
-                     item.classList.remove('active-chat');
-                     if (item.dataset.contactId === contactId) {
-                         item.classList.add('active-chat');
-                     }
-                 });
-             }
+            const chatFrame = document.getElementById('chat-frame');
+            const placeholder = document.getElementById('emptyStatePlaceholder');
+
+            if (chatFrame && placeholder) {
+                // Add embedded=true param
+                chatFrame.src = 'interface.html?embedded=true';
+                placeholder.style.display = 'none';
+                chatFrame.style.display = 'block';
+
+                // Highlight active chat item
+                document.querySelectorAll('.chat-item').forEach(item => {
+                    item.classList.remove('active-chat');
+                    if (item.dataset.contactId === contactId) {
+                        item.classList.add('active-chat');
+                    }
+                });
+            }
         } else {
             // Navigate to interface on mobile
             window.location.href = 'interface.html';
@@ -412,18 +412,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function handleSearch() {
         const query = searchInput.value.toLowerCase().trim();
-        
+
         if (query === '') {
             renderChatList();
             return;
         }
-        
+
         const contacts = getContacts();
-        const filteredContacts = contacts.filter(contact => 
+        const filteredContacts = contacts.filter(contact =>
             contact.name.toLowerCase().includes(query) ||
             contact.lastMessage.toLowerCase().includes(query)
         );
-        
+
         renderChatList(filteredContacts);
     }
 
@@ -444,7 +444,7 @@ document.addEventListener('DOMContentLoaded', function() {
         btn.addEventListener('click', () => {
             navBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-            
+
             const tab = btn.dataset.tab;
             if (tab === 'settings') {
                 openSettingsModal();
@@ -458,34 +458,26 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // ========================================
-    // SETTINGS MODAL FUNCTIONALITY
-    // ========================================
+    // Settings Modal Functionality
 
-    /**
-     * OPEN SETTINGS MODAL
-     * Shows the settings modal with all configuration options
-     */
+    // Open Settings Modal
     function openSettingsModal() {
         const settingsModal = document.getElementById('settingsModal');
         settingsModal.classList.add('active');
         document.body.style.overflow = 'hidden';
-        
+
         // Load current settings
         loadCurrentSettings();
-        
+
         // Set up event listeners for settings
         setupSettingsEventListeners();
     }
 
-    /**
-     * SETUP SETTINGS EVENT LISTENERS
-     * Sets up all event listeners for settings modal controls
-     */
+    // Setup Settings Event Listeners
     function setupSettingsEventListeners() {
         console.log('Setting up settings event listeners'); // Debug log
-        
-        // Dark Mode Toggle
+
+        // Dark mode toggle
         const darkModeToggle = document.getElementById('darkModeToggle');
         if (darkModeToggle) {
             console.log('Setting up dark mode toggle'); // Debug log
@@ -497,7 +489,7 @@ document.addEventListener('DOMContentLoaded', function() {
             console.warn('Dark mode toggle not found'); // Debug log
         }
 
-        // Online Status Toggle
+        // Online status
         const onlineStatusToggle = document.getElementById('onlineStatusToggle');
         if (onlineStatusToggle) {
             console.log('Setting up online status toggle'); // Debug log
@@ -532,71 +524,53 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             console.warn('Clear history option not found'); // Debug log
         }
-        
+
         console.log('Settings event listeners setup complete'); // Debug log
     }
 
-    /**
-     * HANDLE DARK MODE TOGGLE
-     * Event handler for dark mode toggle switch
-     */
+    // Handle Dark Mode Toggle
     function handleDarkModeToggle(event) {
         const isDarkMode = event.target.checked;
         toggleDarkMode(isDarkMode);
     }
 
-    /**
-     * HANDLE ONLINE STATUS TOGGLE
-     * Event handler for online status toggle switch
-     */
+    // Handle Online Status Toggle
     function handleOnlineStatusToggle(event) {
         const isOnlineStatusEnabled = event.target.checked;
         localStorage.setItem('onlineStatus', isOnlineStatusEnabled);
-        
+
         // Update all contacts' online status visibility
         updateOnlineStatusVisibility(isOnlineStatusEnabled);
     }
 
-    /**
-     * HANDLE WALLPAPER OPTION
-     * Event handler for wallpaper selection option
-     */
+    // Handle Wallpaper Option
     function handleWallpaperOption() {
         openWallpaperModal();
     }
 
-    /**
-     * HANDLE CLEAR HISTORY OPTION
-     * Event handler for clear history option
-     */
+    // Handle Clear History Option
     function handleClearHistoryOption() {
         console.log('Clear history option clicked'); // Debug log
         showClearHistoryConfirmation();
     }
 
-    /**
-     * CLOSE SETTINGS MODAL
-     * Hides the settings modal and restores scrolling
-     */
-    window.closeSettingsModal = function() {
+    // Close Settings Modal
+    window.closeSettingsModal = function () {
         const settingsModal = document.getElementById('settingsModal');
         settingsModal.classList.remove('active');
         document.body.style.overflow = 'auto';
-        
+
         // Ensure dark mode is properly applied when closing
         const isDarkMode = localStorage.getItem('darkMode') === 'true';
         applyDarkMode(isDarkMode);
-        
+
         // Reset to messages tab
         const navBtns = document.querySelectorAll('.nav-btn');
         navBtns.forEach(b => b.classList.remove('active'));
         document.querySelector('[data-tab="messages"]').classList.add('active');
     };
 
-    /**
-     * LOAD CURRENT SETTINGS
-     * Loads saved settings from localStorage and updates UI
-     */
+    // Load Current Settings
     function loadCurrentSettings() {
         // Load dark mode setting
         const isDarkMode = localStorage.getItem('darkMode') === 'true';
@@ -604,34 +578,28 @@ document.addEventListener('DOMContentLoaded', function() {
         if (darkModeToggle) {
             darkModeToggle.checked = isDarkMode;
         }
-        
+
         // Load online status setting
         const isOnlineStatusEnabled = localStorage.getItem('onlineStatus') !== 'false';
         const onlineStatusToggle = document.getElementById('onlineStatusToggle');
         if (onlineStatusToggle) {
             onlineStatusToggle.checked = isOnlineStatusEnabled;
         }
-        
+
         // Apply dark mode if enabled
         applyDarkMode(isDarkMode);
     }
 
-    /**
-     * INITIALIZE DARK MODE
-     * Applies dark mode on page load based on saved preference
-     */
+    // Initialize Dark Mode
     function initializeDarkMode() {
         const isDarkMode = localStorage.getItem('darkMode') === 'true';
         applyDarkMode(isDarkMode);
     }
 
-    /**
-     * APPLY DARK MODE
-     * Applies or removes dark mode styling
-     */
+    // Apply Dark Mode
     function applyDarkMode(isDarkMode) {
         console.log('Applying dark mode:', isDarkMode); // Debug log
-        
+
         if (isDarkMode) {
             document.body.classList.add('dark-mode');
             // Also apply to html element for complete coverage
@@ -640,35 +608,32 @@ document.addEventListener('DOMContentLoaded', function() {
             document.body.classList.remove('dark-mode');
             document.documentElement.classList.remove('dark-mode');
         }
-        
+
         // Force a style recalculation
         window.getComputedStyle(document.body).backgroundColor;
-        
+
         // Update online status visibility based on current setting
         const isOnlineStatusEnabled = localStorage.getItem('onlineStatus') !== 'false';
         updateOnlineStatusVisibility(isOnlineStatusEnabled);
-        
+
         console.log('Dark mode classes applied:', document.body.classList.contains('dark-mode')); // Debug log
     }
 
-    /**
-     * TOGGLE DARK MODE
-     * Switches between light and dark mode with smooth transition
-     */
+    // Toggle Dark Mode
     function toggleDarkMode(enabled) {
         // Save preference immediately
         localStorage.setItem('darkMode', enabled);
-        
+
         // Apply the mode immediately
         applyDarkMode(enabled);
-        
+
         // Force a repaint to ensure changes are visible
         document.body.offsetHeight;
-        
+
         // Show feedback to user
         const mode = enabled ? 'Dark' : 'Light';
         showDarkModeNotification(`${mode} mode activated`);
-        
+
         // Also update the toggle state in case it gets out of sync
         const darkModeToggle = document.getElementById('darkModeToggle');
         if (darkModeToggle && darkModeToggle.checked !== enabled) {
@@ -676,28 +641,25 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    /**
-     * SHOW DARK MODE NOTIFICATION
-     * Shows a brief notification when dark mode is toggled
-     */
+    // Show Dark Mode Notification
     function showDarkModeNotification(message) {
         // Remove existing notification if any
         const existingNotification = document.querySelector('.dark-mode-notification');
         if (existingNotification) {
             existingNotification.remove();
         }
-        
+
         const notification = document.createElement('div');
         notification.className = 'dark-mode-notification';
         notification.textContent = message;
-        
+
         document.body.appendChild(notification);
-        
+
         // Show notification
         setTimeout(() => {
             notification.classList.add('show');
         }, 10);
-        
+
         // Hide and remove notification
         setTimeout(() => {
             notification.classList.remove('show');
@@ -712,16 +674,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // Settings event listeners are now set up in setupSettingsEventListeners() function
     // This ensures they work properly when the settings modal is opened
 
-    /**
-     * UPDATE ONLINE STATUS VISIBILITY
-     * Shows or hides online status indicators based on setting
-     */
+    // Update Online Status Visibility
     function updateOnlineStatusVisibility(isVisible) {
         const onlineIndicators = document.querySelectorAll('.online-status');
         onlineIndicators.forEach(indicator => {
             indicator.style.display = isVisible ? 'block' : 'none';
         });
-        
+
         // Update contacts data
         const contacts = getContacts();
         contacts.forEach(contact => {
@@ -730,18 +689,15 @@ document.addEventListener('DOMContentLoaded', function() {
         saveContacts(contacts);
     }
 
-    /**
-     * SHOW CLEAR HISTORY CONFIRMATION
-     * Shows enhanced confirmation dialog before clearing all chat history
-     */
+    // Show Clear History Confirmation
     function showClearHistoryConfirmation() {
         console.log('Showing clear history confirmation'); // Debug log
-        
+
         try {
             // Create custom confirmation modal for better UX
             const confirmationModal = createConfirmationModal();
             document.body.appendChild(confirmationModal);
-            
+
             // Show the modal
             setTimeout(() => {
                 confirmationModal.classList.add('active');
@@ -753,17 +709,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 'Are you sure you want to clear all chat history?\n\n' +
                 'This action cannot be undone and will delete all conversations permanently.'
             );
-            
+
             if (confirmed) {
                 clearAllChatHistory();
             }
         }
     }
 
-    /**
-     * CREATE CONFIRMATION MODAL
-     * Creates a custom confirmation dialog for clearing chat history
-     */
+    // Create Confirmation Modal
     function createConfirmationModal() {
         const modal = document.createElement('div');
         modal.className = 'confirmation-modal';
@@ -788,12 +741,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             </div>
         `;
-        
+
         // Load and display statistics
         setTimeout(() => {
             loadChatStatistics(modal);
         }, 100);
-        
+
         return modal;
     }
 
@@ -805,16 +758,16 @@ document.addEventListener('DOMContentLoaded', function() {
         const contacts = getContacts();
         const allHistory = localStorage.getItem(CHAT_HISTORY_STORAGE_KEY);
         const history = allHistory ? JSON.parse(allHistory) : {};
-        
+
         let totalMessages = 0;
         let totalContacts = contacts.length;
-        
+
         // Count total messages across all contacts
         Object.keys(history).forEach(contactId => {
             const messages = history[contactId] || [];
             totalMessages += messages.length;
         });
-        
+
         const statsElement = modal.querySelector('#confirmationStats');
         statsElement.innerHTML = `
             <div class="stat-item">
@@ -832,7 +785,7 @@ document.addEventListener('DOMContentLoaded', function() {
      * CANCEL CLEAR HISTORY
      * Closes the confirmation modal without clearing history
      */
-    window.cancelClearHistory = function() {
+    window.cancelClearHistory = function () {
         const modal = document.querySelector('.confirmation-modal');
         if (modal) {
             modal.classList.remove('active');
@@ -846,7 +799,7 @@ document.addEventListener('DOMContentLoaded', function() {
      * CONFIRM CLEAR HISTORY
      * Proceeds with clearing all chat history after confirmation
      */
-    window.confirmClearHistory = function() {
+    window.confirmClearHistory = function () {
         // Close confirmation modal
         const modal = document.querySelector('.confirmation-modal');
         if (modal) {
@@ -855,10 +808,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.body.removeChild(modal);
             }, 300);
         }
-        
+
         // Show loading state
         showClearingProgress();
-        
+
         // Clear history with delay for better UX
         setTimeout(() => {
             clearAllChatHistory();
@@ -881,9 +834,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             </div>
         `;
-        
+
         document.body.appendChild(progressModal);
-        
+
         // Store reference for later removal
         window.currentProgressModal = progressModal;
     }
@@ -894,31 +847,31 @@ document.addEventListener('DOMContentLoaded', function() {
      */
     function clearAllChatHistory() {
         console.log('Starting to clear all chat history'); // Debug log
-        
+
         try {
             // Get current statistics for feedback
             const contacts = getContacts();
             const allHistory = localStorage.getItem(CHAT_HISTORY_STORAGE_KEY);
             const history = allHistory ? JSON.parse(allHistory) : {};
-            
+
             console.log('Current contacts:', contacts.length); // Debug log
             console.log('Current history keys:', Object.keys(history)); // Debug log
-            
+
             let totalMessages = 0;
             Object.keys(history).forEach(contactId => {
                 const messages = history[contactId] || [];
                 totalMessages += messages.length;
             });
-            
+
             console.log('Total messages to clear:', totalMessages); // Debug log
-            
+
             // Clear all chat history from localStorage
             localStorage.removeItem(CHAT_HISTORY_STORAGE_KEY);
             localStorage.removeItem('chatMessages'); // Legacy storage
             localStorage.removeItem('currentChatContact'); // Clear current selection
-            
+
             console.log('Cleared localStorage items'); // Debug log
-            
+
             // Reset contacts' last messages to default state
             contacts.forEach(contact => {
                 contact.lastMessage = 'No messages yet';
@@ -926,14 +879,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 contact.unreadCount = 0;
             });
             saveContacts(contacts);
-            
+
             console.log('Reset contacts data'); // Debug log
-            
+
             // Refresh the chat list to show updated state
             renderChatList();
-            
+
             console.log('Refreshed chat list'); // Debug log
-            
+
             // Hide progress modal
             if (window.currentProgressModal) {
                 window.currentProgressModal.classList.remove('active');
@@ -944,22 +897,22 @@ document.addEventListener('DOMContentLoaded', function() {
                     window.currentProgressModal = null;
                 }, 300);
             }
-            
+
             // Show success message with statistics
             setTimeout(() => {
                 showClearSuccessMessage(contacts.length, totalMessages);
             }, 500);
-            
+
             // Close settings modal
             setTimeout(() => {
                 closeSettingsModal();
             }, 2000);
-            
+
             console.log('Clear chat history completed successfully'); // Debug log
-            
+
         } catch (error) {
             console.error('Error clearing chat history:', error);
-            
+
             // Hide progress modal
             if (window.currentProgressModal) {
                 window.currentProgressModal.classList.remove('active');
@@ -970,7 +923,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     window.currentProgressModal = null;
                 }, 300);
             }
-            
+
             // Show error message
             alert('An error occurred while clearing chat history. Please try again.');
         }
@@ -999,9 +952,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             </div>
         `;
-        
+
         document.body.appendChild(successModal);
-        
+
         // Auto-close after 3 seconds
         setTimeout(() => {
             successModal.classList.remove('active');
@@ -1024,14 +977,14 @@ document.addEventListener('DOMContentLoaded', function() {
     function openWallpaperModal() {
         const wallpaperModal = document.getElementById('wallpaperModal');
         wallpaperModal.classList.add('active');
-        
+
         // Load current wallpaper selection
         loadCurrentWallpaper();
-        
+
         // Add wallpaper option event listeners
         const wallpaperOptions = document.querySelectorAll('.wallpaper-option');
         wallpaperOptions.forEach(option => {
-            option.addEventListener('click', function() {
+            option.addEventListener('click', function () {
                 const wallpaper = this.dataset.wallpaper;
                 selectWallpaper(wallpaper);
             });
@@ -1042,7 +995,7 @@ document.addEventListener('DOMContentLoaded', function() {
      * CLOSE WALLPAPER MODAL
      * Hides the wallpaper selection modal
      */
-    window.closeWallpaperModal = function() {
+    window.closeWallpaperModal = function () {
         const wallpaperModal = document.getElementById('wallpaperModal');
         wallpaperModal.classList.remove('active');
     };
@@ -1054,7 +1007,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function loadCurrentWallpaper() {
         const currentWallpaper = localStorage.getItem('chatWallpaper') || 'default';
         const wallpaperOptions = document.querySelectorAll('.wallpaper-option');
-        
+
         wallpaperOptions.forEach(option => {
             option.classList.remove('selected');
             if (option.dataset.wallpaper === currentWallpaper) {
@@ -1070,13 +1023,13 @@ document.addEventListener('DOMContentLoaded', function() {
     function selectWallpaper(wallpaper) {
         // Save wallpaper preference
         localStorage.setItem('chatWallpaper', wallpaper);
-        
+
         // Apply wallpaper to interface (this will be used in interface.js)
         localStorage.setItem('interfaceWallpaper', wallpaper);
-        
+
         // Update selection UI
         loadCurrentWallpaper();
-        
+
         // Show confirmation
         setTimeout(() => {
             alert(`Wallpaper changed to ${wallpaper}. You'll see the change in chat conversations.`);
@@ -1088,23 +1041,23 @@ document.addEventListener('DOMContentLoaded', function() {
     loadCurrentSettings();
 
     // Global function to manually refresh dark mode (for debugging)
-    window.refreshDarkMode = function() {
+    window.refreshDarkMode = function () {
         const isDarkMode = localStorage.getItem('darkMode') === 'true';
         console.log('Manually refreshing dark mode:', isDarkMode);
         applyDarkMode(isDarkMode);
     };
 
     // Global function to check dark mode status (for debugging)
-    window.checkDarkMode = function() {
+    window.checkDarkMode = function () {
         const stored = localStorage.getItem('darkMode');
         const bodyHasClass = document.body.classList.contains('dark-mode');
         const htmlHasClass = document.documentElement.classList.contains('dark-mode');
-        
+
         console.log('Dark mode status:');
         console.log('- Stored in localStorage:', stored);
         console.log('- Body has dark-mode class:', bodyHasClass);
         console.log('- HTML has dark-mode class:', htmlHasClass);
-        
+
         return {
             stored: stored,
             bodyClass: bodyHasClass,
@@ -1113,13 +1066,13 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     // Global function to test clear history (for debugging)
-    window.testClearHistory = function() {
+    window.testClearHistory = function () {
         console.log('Testing clear history functionality');
         showClearHistoryConfirmation();
     };
 
     // Global function to force clear history (for debugging)
-    window.forceClearHistory = function() {
+    window.forceClearHistory = function () {
         console.log('Force clearing chat history');
         clearAllChatHistory();
     };

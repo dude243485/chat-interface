@@ -1,78 +1,43 @@
-/**
- * ========================================
- * INDEX PAGE JAVASCRIPT - INDEX.JS
- * ========================================
- * 
- * This file handles functionality for the main landing page (index.html)
- * Currently handles local storage cleanup for fresh app starts.
- * 
- * MAIN FEATURES:
- * - Local storage cleanup on page load
- * - Fresh start initialization
- * - Future: Landing page interactions, animations, etc.
- */
+// Index Page Javascript - Handles local storage cleanup and initialization
 
 // Wait for the DOM to be fully loaded before executing any code
-document.addEventListener('DOMContentLoaded', function() {
-    
-    // ========================================
-    // LOCAL STORAGE CLEANUP
-    // ========================================
-    
-    /**
-     * CLEAR LOCAL STORAGE FOR FRESH START
-     * Removes all chat-related data when landing page loads
-     * This ensures users get a clean experience every time
-     */
+document.addEventListener('DOMContentLoaded', function () {
+
+    // Local Storage Cleanup
+
+    // Clear local storage for fresh start
     function clearStorageForFreshStart() {
         // Clear all chat-related local storage keys
         localStorage.removeItem('chatContacts');        // Contact list data
         localStorage.removeItem('chatHistory');         // All chat message history
         localStorage.removeItem('chatMessages');        // Legacy message storage
         localStorage.removeItem('currentChatContact');  // Currently selected contact
-        
+
         console.log('Local storage cleared for fresh start');
     }
-    
-    // ========================================
-    // INITIALIZATION
-    // ========================================
-    
+
+    // Initialization
+
     // Clear storage when page loads
     clearStorageForFreshStart();
-    
+
     // Initialize dark mode on landing page
     initializeDarkMode();
-    
-    // ========================================
-    // DARK MODE INITIALIZATION
-    // ========================================
-    
-    /**
-     * INITIALIZE DARK MODE
-     * Applies dark mode on landing page if previously enabled
-     */
+
+    // Dark Mode Initialization
+
+    // Initialize Dark Mode
     function initializeDarkMode() {
         const isDarkMode = localStorage.getItem('darkMode') === 'true';
-        
+
         if (isDarkMode) {
             document.body.classList.add('dark-mode');
             document.documentElement.classList.add('dark-mode');
         }
     }
-    
-    // ========================================
-    // FUTURE ENHANCEMENTS
-    // ========================================
-    
-    /**
-     * This file can be expanded to include:
-     * - Landing page animations
-     * - Form validation
-     * - User onboarding flows
-     * - Theme switching
-     * - Language selection
-     * - Analytics tracking
-     */
-    
+
+    // Future Enhancements
+
+    // Potential future features: animations, validation, etc.
+
 });

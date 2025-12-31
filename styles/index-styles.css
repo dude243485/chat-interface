@@ -1,14 +1,14 @@
-/* Import Poppins font from Google Fonts */
+/* Import Poppins font */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
-/* Set box-sizing to border-box for all elements */
+/* Base box-sizing */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
-/* Reset and base styles */
+/* Base styles */
 * {
   margin: 0;
   padding: 0;
@@ -320,7 +320,7 @@ body {
   animation-delay: 0.3s;
 }
 
-/* Dark Mode Styles for Index Page */
+/* Dark Mode Styles */
 body.dark-mode,
 html.dark-mode {
   background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 50%, #1a1a1a 100%);
@@ -363,7 +363,7 @@ body.dark-mode .signup-btn:hover {
   box-shadow: 0 6px 25px rgba(32, 201, 151, 0.4);
 }
 
-/* Dark Mode Transitions for Index */
+/* Dark Mode Transitions */
 body,
 .container,
 .logo-icon,
